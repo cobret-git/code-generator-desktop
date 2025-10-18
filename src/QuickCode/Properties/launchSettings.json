@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "QuickCode (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "QuickCode (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
