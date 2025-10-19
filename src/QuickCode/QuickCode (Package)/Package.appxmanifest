@@ -8,16 +8,16 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="6530f950-3a52-43d4-aa38-cfa37b5e78c7"
-    Publisher="CN=konst"
-    Version="1.0.0.0" />
+    Name="c28edc75-0499-4245-8b68-9ead71a8d058"
+    Publisher="CN=729F7211-11B1-425D-992A-046C47FC1D79"
+    Version="1.1.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="6530f950-3a52-43d4-aa38-cfa37b5e78c7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="c28edc75-0499-4245-8b68-9ead71a8d058" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>QuickCode</DisplayName>
+    <DisplayName>QuickCode (Package)</DisplayName>
     <PublisherDisplayName>konst</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -34,13 +34,13 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="QuickCode"
-        Description="QuickCode"
+        DisplayName="QuickCode (Package)"
+        Description="QuickCode (Package)"
         BackgroundColor="transparent"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        Square150x150Logo="Images\Square150x150Logo.png"
+        Square44x44Logo="Images\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>

@@ -18,20 +18,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TitleBar x:Name="titleBar"
-                  Title="QuickCode"
-                  IsBackButtonVisible="{x:Bind navFrame.CanGoBack, Mode=OneWay}"
-                  IsPaneToggleButtonVisible="True"
-                  PaneToggleRequested="titleBar_PaneToggleRequested" />
-        <NavigationView x:Name="navView"
-                        Grid.Row="1"
-                        IsBackButtonVisible="Collapsed"
-                        IsPaneToggleButtonVisible="False">
-            <NavigationView.MenuItems>
-                
-            </NavigationView.MenuItems>
-            <Frame x:Name="navFrame" />
-        </NavigationView>
 
+        <TitleBar x:Name="titleBar" Grid.Row="0" IsBackButtonVisible="False" Title="QuickCode"/>
+
+        <TextBlock Grid.Row="1" Text="Testing things..." VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TitleLargeTextBlockStyle}"/>
     </Grid>
 </Window>

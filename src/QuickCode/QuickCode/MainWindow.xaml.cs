@@ -30,9 +30,5 @@ namespace QuickCode
             this.ExtendsContentIntoTitleBar = true; // Extend the content into the title bar and hide the default titlebar
             this.SetTitleBar(titleBar); // Set the custom title bar
         }
-        private void titleBar_PaneToggleRequested(TitleBar sender, object args)
-        {
-            navView.IsPaneOpen = !navView.IsPaneOpen;
-        }
     }
 }
