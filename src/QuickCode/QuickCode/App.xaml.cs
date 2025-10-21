@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -11,6 +13,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Microsoft.Windows.ApplicationModel.Resources;
+using QuickCode.ViewModel;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -26,7 +30,11 @@ namespace QuickCode
     /// </summary>
     public partial class App : Application
     {
+        #region Fields
         private Window? _window;
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -34,8 +42,37 @@ namespace QuickCode
         /// </summary>
         public App()
         {
+            Services = ConfigureServices();
             InitializeComponent();
         }
+        #endregion
+
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the current <see cref="App"/> instance in use
+        /// </summary>
+        public new static App Current => (App)Application.Current;
+
+        /// <summary>
+        /// Gets the <see cref="IServiceProvider"/> instance to resolve application services.
+        /// </summary>
+        public IServiceProvider Services { get; }
+        #endregion
+
+        #region Methods
+        public static IServiceProvider ConfigureServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddTransient<CodeGeneratorViewModel>();
+
+            return services.BuildServiceProvider();
+        }
+        #endregion
+
+        #region Handlers
 
         /// <summary>
         /// Invoked when the application is launched.
@@ -46,5 +83,6 @@ namespace QuickCode
             _window = new MainWindow();
             _window.Activate();
         }
+        #endregion
     }
 }

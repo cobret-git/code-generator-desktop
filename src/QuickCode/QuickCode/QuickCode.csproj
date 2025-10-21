@@ -9,15 +9,34 @@
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
     <Nullable>enable</Nullable>
+	<DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Controls\CodeGeneratorContainer.xaml" />
+    <None Remove="Pages\SingleCodeGeneratorPage.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.10" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6584" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251003001" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\SingleCodeGeneratorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\CodeGeneratorContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
     <!-- Publish Properties -->

@@ -19,8 +19,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TitleBar x:Name="titleBar" Grid.Row="0" IsBackButtonVisible="False" Title="QuickCode"/>
+        <TitleBar x:Name="titleBar" 
+                  Grid.Row="0" 
+                  IsBackButtonVisible="False" 
+                  Title="QuickCode"
+                  IsPaneToggleButtonVisible="True"
+                  PaneToggleRequested="titleBar_PaneToggleRequested"/>
+        <NavigationView x:Name="navView"
+                        Grid.Row="1"
+                        IsBackButtonVisible="Collapsed"
+                        IsPaneToggleButtonVisible="False"
+                        SelectionChanged="navView_SelectionChanged"
+                        Loaded="navView_Loaded">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="singleCodePageNavItem" Content="Single code" Tag="SingleCodePage"/>
+            </NavigationView.MenuItems>
+            <Frame x:Name="navFrame" />
+        </NavigationView>
 
-        <TextBlock Grid.Row="1" Text="Testing things..." VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TitleLargeTextBlockStyle}"/>
     </Grid>
 </Window>

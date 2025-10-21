@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using QuickCode.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -23,6 +24,7 @@ namespace QuickCode
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        #region Constructors
         public MainWindow()
         {
             InitializeComponent();
@@ -30,5 +32,29 @@ namespace QuickCode
             this.ExtendsContentIntoTitleBar = true; // Extend the content into the title bar and hide the default titlebar
             this.SetTitleBar(titleBar); // Set the custom title bar
         }
+        #endregion
+
+        #region Handlers
+        private void titleBar_PaneToggleRequested(TitleBar sender, object args)
+        {
+            navView.IsPaneOpen = !navView.IsPaneOpen;
+        }
+        private void navView_Loaded(object sender, RoutedEventArgs e)
+        {
+            navView.SelectedItem = singleCodePageNavItem;
+        }
+        private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.SelectedItem is not NavigationViewItem item) return;
+            var tagStringVvalue = item.Tag?.ToString();
+            switch (tagStringVvalue)
+            {
+                case "SingleCodePage": navFrame.Navigate(typeof(SingleCodeGeneratorPage)); break;
+                default: break;
+            }
+        }
+        #endregion
+
+        
     }
 }
