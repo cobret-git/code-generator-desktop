@@ -240,4 +240,40 @@
   <data name="VcardCountyTextBox.Header" xml:space="preserve">
     <value>County</value>
   </data>
+  <data name="QrCodeLocationLatitudeBox.Header" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="QrCodeLocationLatitudeBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. 51.5072</value>
+  </data>
+  <data name="QrCodeLocationLongitudeBox.Header" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="QrCodeLocationLongitudeBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. -0.1276</value>
+  </data>
+  <data name="QrCodeLocationUseCurrentLocationButton.Content" xml:space="preserve">
+    <value>Use current location</value>
+  </data>
+  <data name="QrCodeLocationPickOnMapButton.Content" xml:space="preserve">
+    <value>Pick on map</value>
+  </data>
+  <data name="QrCodeLocationStatusPermissionDenied.Text" xml:space="preserve">
+    <value>Location access is denied. Check app permissions and Windows location settings.</value>
+  </data>
+  <data name="QrCodeLocationStatusGenericError.Text" xml:space="preserve">
+    <value>We couldn't determine your location. Try again in a moment.</value>
+  </data>
+  <data name="QrCodeLocationStatusOutOfRange.Text" xml:space="preserve">
+    <value>Latitude must be between -90 and 90 and longitude between -180 and 180.</value>
+  </data>
+  <data name="QrCodeLocationPickerDialog.Title" xml:space="preserve">
+    <value>Pick a location</value>
+  </data>
+  <data name="QrCodeLocationPickerUseButton.Content" xml:space="preserve">
+    <value>Use location</value>
+  </data>
+  <data name="QrCodeLocationPickerCancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

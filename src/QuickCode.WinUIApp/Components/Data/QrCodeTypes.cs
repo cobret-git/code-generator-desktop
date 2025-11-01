@@ -14,6 +14,7 @@ namespace QuickCode.Components.Data
         Sms,
         Email,
         Wifi,
+        Location,
         Vcard
     }
 }

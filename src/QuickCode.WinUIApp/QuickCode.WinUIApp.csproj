@@ -17,6 +17,7 @@
     <None Remove="Controls\QrCodeCallControl.xaml" />
     <None Remove="Controls\QrCodeEmailControl.xaml" />
     <None Remove="Controls\QrCodeLinkControl.xaml" />
+    <None Remove="Controls\QrCodeLocationControl.xaml" />
     <None Remove="Controls\QrCodeWifiControl.xaml" />
     <None Remove="Controls\QrCodeTextControl.xaml" />
     <None Remove="Controls\QrCodeVcardControl.xaml" />
@@ -67,6 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\QrCodeEmailControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\QrCodeLocationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

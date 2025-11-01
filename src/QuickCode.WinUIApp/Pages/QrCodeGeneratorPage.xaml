@@ -30,6 +30,9 @@
         <DataTemplate x:Key="WifiDataControlTemplate">
             <controls:QrCodeWifiControl/>
         </DataTemplate>
+        <DataTemplate x:Key="LocationDataControlTemplate">
+            <controls:QrCodeLocationControl/>
+        </DataTemplate>
         <DataTemplate x:Key="VcardDataControlTemplate">
             <controls:QrCodeVcardControl/>
         </DataTemplate>
@@ -40,6 +43,7 @@
                                                      SmsDataControlTemplate="{StaticResource SmsDataControlTemplate}"
                                                      EmailDataControlTemplate="{StaticResource EmailDataControlTempalte}"
                                                      WifiDataControlTemplate="{StaticResource WifiDataControlTemplate}"
+                                                     LocationDataControlTemplate="{StaticResource LocationDataControlTemplate}"
                                                      VcardDataControlTemplate="{StaticResource VcardDataControlTemplate}"/>
     </Page.Resources>
     <Grid Margin="58,20,10,0" ColumnSpacing="10" MaxWidth="1200">
