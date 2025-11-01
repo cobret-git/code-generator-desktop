@@ -189,6 +189,54 @@
   <data name="SubjectTextBox.Header" xml:space="preserve">
     <value>Subject</value>
   </data>
+ <data name="SepaNameTextBox.Header" xml:space="preserve">
+   <value>Recipient name</value>
+ </data>
+ <data name="SepaNameTextBox.PlaceholderText" xml:space="preserve">
+   <value>e.g. Alex Doe</value>
+ </data>
+ <data name="SepaIbanTextBox.Header" xml:space="preserve">
+   <value>IBAN</value>
+ </data>
+ <data name="SepaIbanTextBox.PlaceholderText" xml:space="preserve">
+   <value>e.g. DE44500105175407324931</value>
+ </data>
+ <data name="SepaBicTextBox.Header" xml:space="preserve">
+   <value>BIC (optional)</value>
+ </data>
+ <data name="SepaBicTextBox.PlaceholderText" xml:space="preserve">
+   <value>e.g. DEUTDEFF</value>
+ </data>
+ <data name="SepaAmountTextBox.Header" xml:space="preserve">
+   <value>Amount (EUR)</value>
+ </data>
+ <data name="SepaAmountTextBox.PlaceholderText" xml:space="preserve">
+   <value>e.g. 199.99</value>
+ </data>
+ <data name="SepaPurposeTextBox.Header" xml:space="preserve">
+   <value>Purpose (optional)</value>
+ </data>
+ <data name="SepaPurposeTextBox.PlaceholderText" xml:space="preserve">
+   <value>e.g. GDDS</value>
+ </data>
+ <data name="SepaPaymentReferenceTextBox.Header" xml:space="preserve">
+   <value>Payment reference (optional)</value>
+ </data>
+ <data name="SepaPaymentReferenceTextBox.PlaceholderText" xml:space="preserve">
+   <value>e.g. RF18539007547034</value>
+ </data>
+ <data name="SepaRemittanceInformationTextBox.Header" xml:space="preserve">
+   <value>Remittance information (optional)</value>
+ </data>
+ <data name="SepaRemittanceInformationTextBox.PlaceholderText" xml:space="preserve">
+   <value>Payment description</value>
+ </data>
+ <data name="SepaNoteTextBox.Header" xml:space="preserve">
+   <value>Note (optional)</value>
+ </data>
+ <data name="SepaNoteTextBox.PlaceholderText" xml:space="preserve">
+   <value>Additional note for the recipient</value>
+ </data>
   <data name="CalendarEventNameTextBox.Header" xml:space="preserve">
     <value>Event name</value>
   </data>

@@ -55,6 +55,7 @@ namespace QuickCode.ViewModels
                     case QrCodeTypes.Wifi: SelectedDataModel = new QrCodeWifiDataViewModel(); break;
                     case QrCodeTypes.Location: SelectedDataModel = new QrCodeLocationViewModel(); break;
                     case QrCodeTypes.Vcard: SelectedDataModel = new QrCodeVcardDataViewModel(); break;
+                    case QrCodeTypes.SepaPayment: SelectedDataModel = new QrCodeSepaPaymentDataViewModel(); break;
                     default: throw new NotImplementedException($"Not supported type: \"{type}\"");
                 }
                 QrCodePreview = null;

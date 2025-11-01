@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using QuickCode.Controls;
 using QuickCode.ViewModels;
 using System;
 
@@ -17,6 +18,7 @@ namespace QuickCode.Components.TemplateSelectors
         public DataTemplate VcardDataControlTemplate { get; set; } = null!;
         public DataTemplate LocationDataControlTemplate { get; set; } = null!;
         public DataTemplate CalendarEventDataControlTemplate { get; set; } = null!;
+        public DataTemplate SepaPaymentDataControlTemplate { get; set; } = null!;
         #endregion
 
         #region Methods
@@ -35,6 +37,7 @@ namespace QuickCode.Components.TemplateSelectors
                 QrCodeVcardDataViewModel => VcardDataControlTemplate,
                 QrCodeLocationViewModel => LocationDataControlTemplate,
                 QrCodeCalendarEventViewModel => CalendarEventDataControlTemplate,
+                QrCodeSepaPaymentDataViewModel => SepaPaymentDataControlTemplate,
                 _ => throw new NotImplementedException($"Not supported type: \"{item.GetType().Name}\"")
             };
         }
