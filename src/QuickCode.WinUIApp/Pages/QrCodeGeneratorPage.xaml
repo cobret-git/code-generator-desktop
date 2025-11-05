@@ -84,12 +84,12 @@
                     BorderBrush="{ThemeResource CircleElevationBorderBrush}">
                 <Grid Width="256" Height="256">
                     <Image Width="256" Height="256" 
-                           Visibility="{Binding QrCodePreview, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullToVisibilityConverter}}"
-                           Source="{Binding QrCodePreview, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                           Visibility="{Binding QrCodePreviewSvg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullToVisibilityConverter}}"
+                           Source="{Binding QrCodePreviewSvg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                            Opacity="{Binding IsBusy, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BusyStatusOpacityConverter}}"/>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xED14;" FontSize="128"
                               Opacity="{Binding IsBusy, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BusyStatusOpacityConverter}}"
-                              Visibility="{Binding QrCodePreview, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullToInversedVisibilityConverter}}"/>
+                              Visibility="{Binding QrCodePreviewSvg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullToInversedVisibilityConverter}}"/>
                     <ProgressRing IsIndeterminate="{Binding IsBusy, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </Border>

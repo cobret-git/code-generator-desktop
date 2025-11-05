@@ -1,11 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using QRCoder;
 using QuickCode.Components.Data;
+using QuickCode.Model;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QuickCode.ViewModels
@@ -18,6 +23,7 @@ namespace QuickCode.ViewModels
         private IQrCodeDataViewModel selectedDataModel = null!;
         private QrCodeTypes selectedType = QrCodeTypes.Text;
         private BitmapSource? qrCodePreview;
+        private SvgImageSource? qrCodePreviewSvg;
         private string? plainText;
         #endregion
 
@@ -37,6 +43,7 @@ namespace QuickCode.ViewModels
         public QrCodeTypes[] Types { get; }
         public bool IsBusy { get => isBusy; private set { isBusy = value; OnPropertyChanged(); } }
         public BitmapSource? QrCodePreview { get => qrCodePreview; private set { qrCodePreview = value; OnPropertyChanged(); } }
+        public SvgImageSource? QrCodePreviewSvg { get => qrCodePreviewSvg; private set { qrCodePreviewSvg = value; OnPropertyChanged(); } }
         #endregion
 
         #region Handlers
@@ -59,6 +66,7 @@ namespace QuickCode.ViewModels
                     default: throw new NotImplementedException($"Not supported type: \"{type}\"");
                 }
                 QrCodePreview = null;
+                QrCodePreviewSvg = null;
             }
             catch (Exception ex)
             {
@@ -76,7 +84,7 @@ namespace QuickCode.ViewModels
         private async void OnTimerTick(object? sender, object e)
         {
             timer.Stop();
-            await GenerateQrCodeAsync(plainText);
+            await GenerateQrCodeSvgAsync(plainText);
         }
         #endregion
 
@@ -109,6 +117,33 @@ namespace QuickCode.ViewModels
                     await bitmap.SetSourceAsync(randomAccessStream);
                 }
                 QrCodePreview = bitmap;
+                IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                IsBusy = false;
+            }
+        }
+        private async Task GenerateQrCodeSvgAsync(string? plainText)
+        {
+            try
+            {
+                SvgImageSource a = null!;
+                if (!string.IsNullOrWhiteSpace(plainText))
+                {
+                    using var qrGenerator = new QRCodeGenerator();
+                    using var qrCodeData = qrGenerator.CreateQrCode(plainText, QRCodeGenerator.ECCLevel.Q);
+                    using var qrCode = new SvgQRCode(qrCodeData);
+                    var svgXml = qrCode.GetGraphic(20);
+                    var svgProcessor = new QrCodeSvgProcessor(svgXml);
+                    using var stream = new MemoryStream(svgProcessor.ToByteArray());
+                    using var randomAccessStream = stream.AsRandomAccessStream();
+
+                    a = new SvgImageSource();
+                    await a.SetSourceAsync(randomAccessStream);
+                }
+                QrCodePreviewSvg = a;
                 IsBusy = false;
             }
             catch (Exception ex)
