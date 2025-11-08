@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
+using Windows.ApplicationModel.Resources;
 
 namespace QuickCode.ViewModels
 {
@@ -11,11 +12,24 @@ namespace QuickCode.ViewModels
         private string message = string.Empty;
         #endregion
 
+        #region Constructors
+        public QrCodeEmailDataViewModel()
+        {
+            var resourceLoader = new ResourceLoader();
+            Header = resourceLoader.GetString("QrCodeEmail.Header");
+            Description = resourceLoader.GetString("QrCodeEmail.Description");
+            IconGlyph = "&#xE715;";
+        }
+        #endregion
+
         #region Events
         public event EventHandler<string?>? RawDataReceived;
         #endregion
 
         #region Properties
+        public string Header { get; }
+        public string Description { get; }
+        public string IconGlyph { get; }
         public string Address { get => address; set { address = value; OnPropertyChanged(); OnFieldChanged(); } }
         public string Subject { get => subject; set { subject = value; OnPropertyChanged(); OnFieldChanged(); } }
         public string Message { get => message; set { message = value; OnPropertyChanged(); OnFieldChanged(); } }

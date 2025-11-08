@@ -8,6 +8,24 @@ namespace QuickCode.ViewModels
     /// </summary>
     public interface IQrCodeDataViewModel
     {
+        #region Properties
+
+        /// <summary>
+        /// A read-only string property, used for a icon for the data type.
+        /// </summary>
+        public string IconGlyph { get; }
+
+        /// <summary>
+        /// A read-only string property, likely used for a title or brief label for the data type.
+        /// </summary>
+        public string Header { get; }
+
+        /// <summary>
+        /// A read-only string property, likely providing a more detailed explanation of the data the ViewModel handles.
+        /// </summary>
+        public string Description { get; }
+        #endregion
+
         #region Event
 
         /// <summary>

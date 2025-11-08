@@ -1,6 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using QRCoder;
 using System;
 using System.Text;
+using Windows.ApplicationModel.Resources;
 
 namespace QuickCode.ViewModels
 {
@@ -19,6 +21,11 @@ namespace QuickCode.ViewModels
         #region Constructors
         public QrCodeCalendarEventViewModel()
         {
+            var resourceLoader = new ResourceLoader();
+            Header = resourceLoader.GetString("CalendarEvent.Header");
+            Description = resourceLoader.GetString("CalendarEvent.Description");
+            IconGlyph = "&#xE787;";
+
             var now = DateTimeOffset.Now;
             startDate = now;
             endDate = now.AddHours(1);
@@ -32,6 +39,9 @@ namespace QuickCode.ViewModels
         #endregion
 
         #region Properties
+        public string Header { get; }
+        public string Description { get; }
+        public string IconGlyph { get; }
         public string EventName { get => eventName; set { eventName = value; OnPropertyChanged(); OnFieldChanged(); } }
         public DateTimeOffset StartDate { get => startDate; set { startDate = value; OnPropertyChanged(); OnFieldChanged(); } }
         public TimeSpan? StartTime { get => startTime; set { startTime = value; OnPropertyChanged(); OnFieldChanged(); } }

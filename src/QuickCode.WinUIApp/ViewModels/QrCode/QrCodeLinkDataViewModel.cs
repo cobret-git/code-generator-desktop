@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
+using Windows.ApplicationModel.Resources;
 
 namespace QuickCode.ViewModels
 {
@@ -9,20 +10,25 @@ namespace QuickCode.ViewModels
         private string link = string.Empty;
         #endregion
 
+        #region Constructors
+        public QrCodeLinkDataViewModel()
+        {
+            var resourceLoader = new ResourceLoader();
+            Header = resourceLoader.GetString("QrCodeLink.Header");
+            Description = resourceLoader.GetString("QrCodeLink.Description");
+            IconGlyph = "&#xE71B;";
+        }
+        #endregion
+
         #region Events
         public event EventHandler<string?>? RawDataReceived;
         #endregion
 
         #region Properties
-        public string Link
-        {
-            get => link;
-            set
-            {
-                link = value;
-                OnLinkChanged(value);
-            }
-        }
+        public string Header { get; }
+        public string Description { get; }
+        public string IconGlyph { get; }
+        public string Link { get => link; set { link = value; OnLinkChanged(value); } }
         #endregion
 
         #region Handlers

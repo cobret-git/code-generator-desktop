@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Shapes;
 using QuickCode.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 

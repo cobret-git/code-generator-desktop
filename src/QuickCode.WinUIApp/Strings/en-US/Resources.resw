@@ -189,54 +189,54 @@
   <data name="SubjectTextBox.Header" xml:space="preserve">
     <value>Subject</value>
   </data>
- <data name="SepaNameTextBox.Header" xml:space="preserve">
-   <value>Recipient name</value>
- </data>
- <data name="SepaNameTextBox.PlaceholderText" xml:space="preserve">
-   <value>e.g. Alex Doe</value>
- </data>
- <data name="SepaIbanTextBox.Header" xml:space="preserve">
-   <value>IBAN</value>
- </data>
- <data name="SepaIbanTextBox.PlaceholderText" xml:space="preserve">
-   <value>e.g. DE44500105175407324931</value>
- </data>
- <data name="SepaBicTextBox.Header" xml:space="preserve">
-   <value>BIC (optional)</value>
- </data>
- <data name="SepaBicTextBox.PlaceholderText" xml:space="preserve">
-   <value>e.g. DEUTDEFF</value>
- </data>
- <data name="SepaAmountTextBox.Header" xml:space="preserve">
-   <value>Amount (EUR)</value>
- </data>
- <data name="SepaAmountTextBox.PlaceholderText" xml:space="preserve">
-   <value>e.g. 199.99</value>
- </data>
- <data name="SepaPurposeTextBox.Header" xml:space="preserve">
-   <value>Purpose (optional)</value>
- </data>
- <data name="SepaPurposeTextBox.PlaceholderText" xml:space="preserve">
-   <value>e.g. GDDS</value>
- </data>
- <data name="SepaPaymentReferenceTextBox.Header" xml:space="preserve">
-   <value>Payment reference (optional)</value>
- </data>
- <data name="SepaPaymentReferenceTextBox.PlaceholderText" xml:space="preserve">
-   <value>e.g. RF18539007547034</value>
- </data>
- <data name="SepaRemittanceInformationTextBox.Header" xml:space="preserve">
-   <value>Remittance information (optional)</value>
- </data>
- <data name="SepaRemittanceInformationTextBox.PlaceholderText" xml:space="preserve">
-   <value>Payment description</value>
- </data>
- <data name="SepaNoteTextBox.Header" xml:space="preserve">
-   <value>Note (optional)</value>
- </data>
- <data name="SepaNoteTextBox.PlaceholderText" xml:space="preserve">
-   <value>Additional note for the recipient</value>
- </data>
+  <data name="SepaNameTextBox.Header" xml:space="preserve">
+    <value>Recipient name</value>
+  </data>
+  <data name="SepaNameTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. Alex Doe</value>
+  </data>
+  <data name="SepaIbanTextBox.Header" xml:space="preserve">
+    <value>IBAN</value>
+  </data>
+  <data name="SepaIbanTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. DE44500105175407324931</value>
+  </data>
+  <data name="SepaBicTextBox.Header" xml:space="preserve">
+    <value>BIC (optional)</value>
+  </data>
+  <data name="SepaBicTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. DEUTDEFF</value>
+  </data>
+  <data name="SepaAmountTextBox.Header" xml:space="preserve">
+    <value>Amount (EUR)</value>
+  </data>
+  <data name="SepaAmountTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. 199.99</value>
+  </data>
+  <data name="SepaPurposeTextBox.Header" xml:space="preserve">
+    <value>Purpose (optional)</value>
+  </data>
+  <data name="SepaPurposeTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. GDDS</value>
+  </data>
+  <data name="SepaPaymentReferenceTextBox.Header" xml:space="preserve">
+    <value>Payment reference (optional)</value>
+  </data>
+  <data name="SepaPaymentReferenceTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. RF18539007547034</value>
+  </data>
+  <data name="SepaRemittanceInformationTextBox.Header" xml:space="preserve">
+    <value>Remittance information (optional)</value>
+  </data>
+  <data name="SepaRemittanceInformationTextBox.PlaceholderText" xml:space="preserve">
+    <value>Payment description</value>
+  </data>
+  <data name="SepaNoteTextBox.Header" xml:space="preserve">
+    <value>Note (optional)</value>
+  </data>
+  <data name="SepaNoteTextBox.PlaceholderText" xml:space="preserve">
+    <value>Additional note for the recipient</value>
+  </data>
   <data name="CalendarEventNameTextBox.Header" xml:space="preserve">
     <value>Event name</value>
   </data>
@@ -356,5 +356,65 @@
   </data>
   <data name="QrCodeLocationPickerCancelButton.Content" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="CalendarEvent.Header" xml:space="preserve">
+    <value>Calendar event</value>
+  </data>
+  <data name="CalendarEvent.Description" xml:space="preserve">
+    <value>Create an event that users can quickly add to their calendars.</value>
+  </data>
+  <data name="CallQrCode.Header" xml:space="preserve">
+    <value>Call</value>
+  </data>
+  <data name="CallQrCode.Description" xml:space="preserve">
+    <value>Create a link that lets users instantly start a phone call.</value>
+  </data>
+  <data name="QrCodeEmail.Header" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="QrCodeEmail.Description" xml:space="preserve">
+    <value>Generate a ready-to-send email with predefined details.</value>
+  </data>
+  <data name="QrCodeLink.Header" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="QrCodeLink.Description" xml:space="preserve">
+    <value>Instant access to your website or landing page.</value>
+  </data>
+  <data name="QrCodeLocation.Header" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="QrCodeLocation.Description" xml:space="preserve">
+    <value>Generate a map location for quick navigation.</value>
+  </data>
+  <data name="QrCodeSepaPayment.Header" xml:space="preserve">
+    <value>SEPA Payment</value>
+  </data>
+  <data name="QrCodeSepaPayment.Description" xml:space="preserve">
+    <value>Generate prefilled SEPA payment details for quick transfers.</value>
+  </data>
+  <data name="QrCodeSms.Header" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="QrCodeSms.Description" xml:space="preserve">
+    <value>Open a prefilled SMS message.</value>
+  </data>
+  <data name="QrCodeText.Description" xml:space="preserve">
+    <value>Show custom text content.</value>
+  </data>
+  <data name="QrCodeText.Header" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="QrCodeVcard.Header" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="QrCodeVcard.Description" xml:space="preserve">
+    <value>“Add a contact directly to the address book.</value>
+  </data>
+  <data name="QrCodeWifi.Header" xml:space="preserve">
+    <value>Wi-Fi</value>
+  </data>
+  <data name="QrCodeWifi.Description" xml:space="preserve">
+    <value>Connect to Wi-Fi effortlessly.</value>
   </data>
 </root>

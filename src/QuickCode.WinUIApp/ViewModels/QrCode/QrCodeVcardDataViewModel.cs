@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Text;
+using Windows.ApplicationModel.Resources;
 
 namespace QuickCode.ViewModels
 {
@@ -22,11 +23,24 @@ namespace QuickCode.ViewModels
         private string county = string.Empty;
         #endregion
 
+        #region Constructors
+        public QrCodeVcardDataViewModel()
+        {
+            var resourceLoader = new ResourceLoader();
+            Header = resourceLoader.GetString("QrCodeVcard.Header");
+            Description = resourceLoader.GetString("QrCodeVcard.Description");
+            IconGlyph = "&#xEA4A;";
+        }
+        #endregion
+
         #region Events
         public event EventHandler<string?>? RawDataReceived;
         #endregion
 
         #region Properties
+        public string Header { get; }
+        public string Description { get; }
+        public string IconGlyph { get; }
         public string FirstName { get => firstName; set { firstName = value ?? string.Empty; OnPropertyChanged(); OnFieldChanged(); } }
         public string LastName { get => lastName; set { lastName = value ?? string.Empty; OnPropertyChanged(); OnFieldChanged(); } }
         public string PhoneNumber { get => phoneNumber; set { phoneNumber = value ?? string.Empty; OnPropertyChanged(); OnFieldChanged(); } }

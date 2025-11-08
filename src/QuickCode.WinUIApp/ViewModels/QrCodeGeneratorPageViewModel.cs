@@ -10,6 +10,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,6 @@ namespace QuickCode.ViewModels
         private readonly DispatcherTimer timer;
         private bool isBusy;
         private IQrCodeDataViewModel selectedDataModel = null!;
-        private QrCodeTypes selectedType = QrCodeTypes.Text;
         private BitmapSource? qrCodePreview;
         private SvgImageSource? qrCodePreviewSvg;
         private string? plainText;
@@ -33,47 +33,27 @@ namespace QuickCode.ViewModels
             timer = new() { Interval = TimeSpan.FromMilliseconds(200) };
             timer.Tick += OnTimerTick;
             SelectedDataModel = new QrCodeTextDataViewModel();
-            Types = Enum.GetValues<QrCodeTypes>();
+            DataModels = new IQrCodeDataViewModel[]
+            {
+                new QrCodeCalendarEventViewModel(), new QrCodeCallDataViewModel(),
+                new QrCodeEmailDataViewModel(), new QrCodeLinkDataViewModel(),
+                new QrCodeLocationViewModel(), new QrCodeSepaPaymentDataViewModel(),
+                new QrCodeSmsDataViewModel(), new QrCodeTextDataViewModel(),
+                new QrCodeVcardDataViewModel(), new QrCodeWifiDataViewModel(),
+            };
+            SelectedDataModel = DataModels.First(x => x is QrCodeTextDataViewModel);
         }
         #endregion
 
         #region Properties
         public IQrCodeDataViewModel SelectedDataModel { get => selectedDataModel; private set => SelectDataModel(value); }
-        public QrCodeTypes SelectedType { get => selectedType; set { selectedType = value; OnSelectedTypeChanged(value); } }
-        public QrCodeTypes[] Types { get; }
+        public IQrCodeDataViewModel[] DataModels { get; }
         public bool IsBusy { get => isBusy; private set { isBusy = value; OnPropertyChanged(); } }
         public BitmapSource? QrCodePreview { get => qrCodePreview; private set { qrCodePreview = value; OnPropertyChanged(); } }
         public SvgImageSource? QrCodePreviewSvg { get => qrCodePreviewSvg; private set { qrCodePreviewSvg = value; OnPropertyChanged(); } }
         #endregion
 
         #region Handlers
-        private void OnSelectedTypeChanged(QrCodeTypes type)
-        {
-            try
-            {
-                switch (type)
-                {
-                    case QrCodeTypes.Text: SelectedDataModel = new QrCodeTextDataViewModel(); break;
-                    case QrCodeTypes.Link: SelectedDataModel = new QrCodeLinkDataViewModel(); break;
-                    case QrCodeTypes.Call: SelectedDataModel = new QrCodeCallDataViewModel(); break;
-                    case QrCodeTypes.Sms: SelectedDataModel = new QrCodeSmsDataViewModel(); break;
-                    case QrCodeTypes.Email: SelectedDataModel = new QrCodeEmailDataViewModel(); break;
-                    case QrCodeTypes.CalendarEvent: SelectedDataModel = new QrCodeCalendarEventViewModel(); break;
-                    case QrCodeTypes.Wifi: SelectedDataModel = new QrCodeWifiDataViewModel(); break;
-                    case QrCodeTypes.Location: SelectedDataModel = new QrCodeLocationViewModel(); break;
-                    case QrCodeTypes.Vcard: SelectedDataModel = new QrCodeVcardDataViewModel(); break;
-                    case QrCodeTypes.SepaPayment: SelectedDataModel = new QrCodeSepaPaymentDataViewModel(); break;
-                    default: throw new NotImplementedException($"Not supported type: \"{type}\"");
-                }
-                QrCodePreview = null;
-                QrCodePreviewSvg = null;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            OnPropertyChanged(nameof(SelectedType));
-        }
         private void SelectedDataModel_RawDataReceived(object? sender, string? e)
         {
             plainText = e;
@@ -98,6 +78,8 @@ namespace QuickCode.ViewModels
             selectedDataModel = value;
             selectedDataModel.RawDataReceived += SelectedDataModel_RawDataReceived;
             OnPropertyChanged(nameof(SelectedDataModel));
+            QrCodePreview = null;
+            QrCodePreviewSvg = null;
         }
         private async Task GenerateQrCodeAsync(string? plainText)
         {

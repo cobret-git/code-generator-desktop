@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Globalization;
 using System.Linq;
+using Windows.ApplicationModel.Resources;
 
 namespace QuickCode.ViewModels
 {
@@ -18,11 +19,24 @@ namespace QuickCode.ViewModels
         private string note = string.Empty;
         #endregion
 
+        #region Constructors
+        public QrCodeSepaPaymentDataViewModel()
+        {
+            var resourceLoader = new ResourceLoader();
+            Header = resourceLoader.GetString("QrCodeSepaPayment.Header");
+            Description = resourceLoader.GetString("QrCodeSepaPayment.Description");
+            IconGlyph = "&#xE8C7;";
+        }
+        #endregion
+
         #region Events
         public event EventHandler<string?>? RawDataReceived;
         #endregion
 
         #region Properties
+        public string Header { get; }
+        public string Description { get; }
+        public string IconGlyph { get; }
         public string Name { get => name; set { name = value; OnPropertyChanged(); OnFieldChanged(); } }
         public string Iban { get => iban; set { iban = value; OnPropertyChanged(); OnFieldChanged(); } }
         public string Bic { get => bic; set { bic = value; OnPropertyChanged(); OnFieldChanged(); } }

@@ -1,7 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Windows.ApplicationModel.Resources;
 using System;
 using System.Globalization;
+using Windows.ApplicationModel.Resources;
 
 namespace QuickCode.ViewModels
 {
@@ -13,11 +13,24 @@ namespace QuickCode.ViewModels
         private double? longitude;
         #endregion
 
+        #region Constructors
+        public QrCodeLocationViewModel()
+        {
+            var resourceLoader = new ResourceLoader();
+            Header = App.Current.MainResourceMap.GetString("QrCodeLocation.Header");
+            Description = resourceLoader.GetString("QrCodeLocation.Description");
+            IconGlyph = "&#xE707;";
+        }
+        #endregion
+
         #region Events
         public event EventHandler<string?>? RawDataReceived;
         #endregion
 
         #region Properties
+        public string Header { get; }
+        public string Description { get; }
+        public string IconGlyph { get; }
         public double? Latitude { get => latitude; set { latitude = value; OnPropertyChanged(); OnCoordinatesChanged(); } }
         public double? Longitude { get => longitude; set { longitude = value; OnPropertyChanged(); OnCoordinatesChanged(); } }
         #endregion

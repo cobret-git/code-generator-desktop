@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using QuickCode.Components.Data;
 using System;
 using System.Text;
+using Windows.ApplicationModel.Resources;
 
 namespace QuickCode.ViewModels
 {
@@ -17,6 +18,10 @@ namespace QuickCode.ViewModels
         #region Constructors
         public QrCodeWifiDataViewModel()
         {
+            var resourceLoader = new ResourceLoader();
+            Header = resourceLoader.GetString("QrCodeWifi.Header");
+            Description = resourceLoader.GetString("QrCodeWifi.Description");
+            IconGlyph = "&#xE701;";
             Encryptions = Enum.GetValues<WifiEncryptionType>();
             SelectedEncryption = WifiEncryptionType.WPA2;
         }
@@ -27,6 +32,9 @@ namespace QuickCode.ViewModels
         #endregion
 
         #region Properties
+        public string Header { get; }
+        public string Description { get; }
+        public string IconGlyph { get; }
         public WifiEncryptionType[] Encryptions { get; }
         public string Ssid { get => ssid; set { ssid = value ?? string.Empty; OnPropertyChanged(); SendRawData(); } }
         public WifiEncryptionType SelectedEncryption { get => selectedEncryption; set { selectedEncryption = value; OnPropertyChanged(); SendRawData(); } }
