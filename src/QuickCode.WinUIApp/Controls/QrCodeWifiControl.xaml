@@ -22,21 +22,21 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                 x:Uid="QrCodeWifiSsidBox"
+                 x:Uid="QrCodeWifi_SsidBox"
                  Text="{Binding Ssid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <ComboBox Grid.Row="1" Grid.Column="0"
-                  x:Uid="QrCodeWifiEncryptionComboBox"
+                  x:Uid="QrCodeWifi_EncryptionCombobox"
                   ItemsSource="{Binding Encryptions}"
                   SelectedItem="{Binding SelectedEncryption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <PasswordBox Grid.Row="1" Grid.Column="1"
-                     x:Uid="QrCodeWifiPasswordBox"
+                     x:Uid="QrCodeWifi_PasswordBox"
                      x:Name="PasswordBox"
                      PasswordChanged="OnPasswordChanged"/>
 
         <ToggleSwitch Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                      x:Uid="QrCodeWifiHiddenNetworkToggle"
+                      x:Uid="QrCodeWifi_HiddenNetworkToggle"
                       IsOn="{Binding IsHidden, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

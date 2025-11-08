@@ -21,13 +21,13 @@
         </Grid.ColumnDefinitions>
 
         <NumberBox Grid.Row="0" Grid.Column="0"
-                   x:Uid="QrCodeLocationLatitudeBox"
+                   x:Uid="QrCodeLocation_LatitudeBox"
                    Minimum="-90" Maximum="90"
                    SpinButtonPlacementMode="Hidden"
                    Value="{Binding Latitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <NumberBox Grid.Row="0" Grid.Column="1"
-                   x:Uid="QrCodeLocationLongitudeBox"
+                   x:Uid="QrCodeLocation_LongitudeBox"
                    Minimum="-180" Maximum="180"
                    SpinButtonPlacementMode="Hidden"
                    Value="{Binding Longitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

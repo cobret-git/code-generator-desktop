@@ -16,8 +16,8 @@ namespace QuickCode.ViewModels
         public QrCodeEmailDataViewModel()
         {
             var resourceLoader = new ResourceLoader();
-            Header = resourceLoader.GetString("QrCodeEmail.Header");
-            Description = resourceLoader.GetString("QrCodeEmail.Description");
+            Header = resourceLoader.GetString("QrCodeEmail_Header");
+            Description = resourceLoader.GetString("QrCodeEmail_Description");
             IconGlyph = "&#xE715;";
         }
         #endregion

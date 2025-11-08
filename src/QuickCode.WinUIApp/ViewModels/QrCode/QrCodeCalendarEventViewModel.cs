@@ -22,8 +22,8 @@ namespace QuickCode.ViewModels
         public QrCodeCalendarEventViewModel()
         {
             var resourceLoader = new ResourceLoader();
-            Header = resourceLoader.GetString("CalendarEvent.Header");
-            Description = resourceLoader.GetString("CalendarEvent.Description");
+            Header = resourceLoader.GetString("QrCodeCalendar_Header");
+            Description = resourceLoader.GetString("QrCodeCalendar_Description");
             IconGlyph = "&#xE787;";
 
             var now = DateTimeOffset.Now;

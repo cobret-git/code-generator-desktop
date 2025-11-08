@@ -17,8 +17,8 @@ namespace QuickCode.ViewModels
         public QrCodeLocationViewModel()
         {
             var resourceLoader = new ResourceLoader();
-            Header = App.Current.MainResourceMap.GetString("QrCodeLocation.Header");
-            Description = resourceLoader.GetString("QrCodeLocation.Description");
+            Header = resourceLoader.GetString("QrCodeLocation_Header");
+            Description = resourceLoader.GetString("QrCodeLocation_Description");
             IconGlyph = "&#xE707;";
         }
         #endregion

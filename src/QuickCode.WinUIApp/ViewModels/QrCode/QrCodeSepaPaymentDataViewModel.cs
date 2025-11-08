@@ -23,8 +23,8 @@ namespace QuickCode.ViewModels
         public QrCodeSepaPaymentDataViewModel()
         {
             var resourceLoader = new ResourceLoader();
-            Header = resourceLoader.GetString("QrCodeSepaPayment.Header");
-            Description = resourceLoader.GetString("QrCodeSepaPayment.Description");
+            Header = resourceLoader.GetString("QrCodeSepa_Header");
+            Description = resourceLoader.GetString("QrCodeSepa_Description");
             IconGlyph = "&#xE8C7;";
         }
         #endregion

@@ -12,23 +12,23 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Spacing="20">
             <StackPanel Spacing="8">
-                <TextBlock x:Uid="QrCodeVcardPersonSectionTitle"
+                <TextBlock x:Uid="QrCodeVcard_PersonSectionTitle"
                            FontWeight="SemiBold"/>
                 <Grid ColumnSpacing="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Uid="VcardFirstNameTextBox"
+                    <TextBox x:Uid="QrCodeVcard_FirstNameTextBox"
                              Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Column="1"
-                             x:Uid="VcardLastNameTextBox"
+                             x:Uid="QrCodeVcard_LastNameTextBox"
                              Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </StackPanel>
 
             <StackPanel Spacing="8">
-                <TextBlock x:Uid="QrCodeVcardContactSectionTitle"
+                <TextBlock x:Uid="QrCodeVcard_ContactSectionTitle"
                            FontWeight="SemiBold"/>
                 <Grid ColumnSpacing="10" RowSpacing="10">
                     <Grid.RowDefinitions>
@@ -40,22 +40,22 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Row="0" Grid.Column="0"
-                             x:Uid="VcardPhoneNumberTextBox"
+                             x:Uid="QrCodeVcard_PhoneNumberTextBox"
                              Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="0" Grid.Column="1"
-                             x:Uid="VcardMobileTextBox"
+                             x:Uid="QrCodeVcard_MobileTextBox"
                              Text="{Binding Mobile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="1" Grid.Column="0"
-                             x:Uid="VcardEmailTextBox"
+                             x:Uid="QrCodeVcard_EmailTextBox"
                              Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="1" Grid.Column="1"
-                             x:Uid="VcardWebsiteTextBox"
+                             x:Uid="QrCodeVcard_WebsiteTextBox"
                              Text="{Binding WebsiteUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </StackPanel>
 
             <StackPanel Spacing="8">
-                <TextBlock x:Uid="QrCodeVcardCompanySectionTitle"
+                <TextBlock x:Uid="QrCodeVcard_CompanySectionTitle"
                            FontWeight="SemiBold"/>
                 <Grid ColumnSpacing="10" RowSpacing="10">
                     <Grid.RowDefinitions>
@@ -67,19 +67,19 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                             x:Uid="VcardCompanyNameTextBox"
+                             x:Uid="QrCodeVcard_CompanyNameTextBox"
                              Text="{Binding CompanyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="1" Grid.Column="0"
-                             x:Uid="VcardJobTitleTextBox"
+                             x:Uid="QrCodeVcard_JobTitleTextBox"
                              Text="{Binding JobTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="1" Grid.Column="1"
-                             x:Uid="VcardFaxTextBox"
+                             x:Uid="QrCodeVcard_FaxTextBox"
                              Text="{Binding Fax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </StackPanel>
 
             <StackPanel Spacing="8">
-                <TextBlock x:Uid="QrCodeVcardLocationSectionTitle"
+                <TextBlock x:Uid="QrCodeVcard_LocationSectionTitle"
                            FontWeight="SemiBold"/>
                 <Grid ColumnSpacing="10" RowSpacing="10">
                     <Grid.RowDefinitions>
@@ -92,16 +92,16 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                             x:Uid="VcardAddressTextBox"
+                             x:Uid="QrCodeVcard_AddressTextBox"
                              Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="1" Grid.Column="0"
-                             x:Uid="VcardCityTextBox"
+                             x:Uid="QrCodeVcard_CityTextBox"
                              Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="1" Grid.Column="1"
-                             x:Uid="VcardPostCodeTextBox"
+                             x:Uid="QrCodeVcard_PostCodeTextBox"
                              Text="{Binding PostCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                             x:Uid="VcardCountyTextBox"
+                             x:Uid="QrCodeVcard_CountyTextBox"
                              Text="{Binding County, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </StackPanel>

@@ -24,35 +24,35 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                 x:Uid="SepaNameTextBox"
+                 x:Uid="QrCodeSepa_NameTextBox"
                  Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                 x:Uid="SepaIbanTextBox" CharacterCasing="Upper" MaxLength="34"
+                 x:Uid="QrCodeSepa_IbanTextBox" CharacterCasing="Upper" MaxLength="34"
                  Text="{Binding Iban, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Row="2" Grid.Column="0"
-                 x:Uid="SepaBicTextBox" CharacterCasing="Upper" MaxLength="11"
+                 x:Uid="QrCodeSepa_BicTextBox" CharacterCasing="Upper" MaxLength="11"
                  Text="{Binding Bic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Row="2" Grid.Column="1"
-                 x:Uid="SepaAmountTextBox" InputScope="CurrencyAmount"
+                 x:Uid="QrCodeSepa_AmountTextBox" InputScope="CurrencyAmount"
                  Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Row="3" Grid.Column="0"
-                 x:Uid="SepaPurposeTextBox" CharacterCasing="Upper" MaxLength="4"
+                 x:Uid="QrCodeSepa_PurposeTextBox" CharacterCasing="Upper" MaxLength="4"
                  Text="{Binding Purpose, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Row="3" Grid.Column="1"
-                 x:Uid="SepaPaymentReferenceTextBox" CharacterCasing="Upper" MaxLength="35"
+                 x:Uid="QrCodeSepa_PaymentReferenceTextBox" CharacterCasing="Upper" MaxLength="35"
                  Text="{Binding PaymentReference, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="80"
-                 x:Uid="SepaRemittanceInformationTextBox" TextWrapping="Wrap" AcceptsReturn="True" MaxLength="140"
+                 x:Uid="QrCodeSepa_RemittanceInformationTextBox" TextWrapping="Wrap" AcceptsReturn="True" MaxLength="140"
                  Text="{Binding RemittanceInformation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="80"
-                 x:Uid="SepaNoteTextBox" TextWrapping="Wrap" AcceptsReturn="True" MaxLength="140"
+                 x:Uid="QrCodeSepa_NoteTextBox" TextWrapping="Wrap" AcceptsReturn="True" MaxLength="140"
                  Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

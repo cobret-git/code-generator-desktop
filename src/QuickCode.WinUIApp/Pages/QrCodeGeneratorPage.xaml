@@ -73,15 +73,17 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
             <Expander HorizontalAlignment="Stretch">
-                <GridView ItemsSource="{Binding DataModels, Mode=OneWay}" HorizontalAlignment="Stretch">
+                <GridView ItemsSource="{Binding DataModels, Mode=OneWay}" 
+                          HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Left">
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid x:Name="MaxItemsWrapGrid" MaximumRowsOrColumns="3" Orientation="Horizontal"/>
+                            <ItemsWrapGrid x:Name="MaxItemsWrapGrid" MaximumRowsOrColumns="2" Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid HorizontalAlignment="Left">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
@@ -90,7 +92,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <FontIcon Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Glyph="{Binding IconGlyph, Mode=OneTime}" />
+                                <FontIcon Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Glyph="{Binding IconGlyph}" />
                                 <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Header, Mode=OneTime}"/>
                                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description, Mode=OneTime}"/>
                             </Grid>

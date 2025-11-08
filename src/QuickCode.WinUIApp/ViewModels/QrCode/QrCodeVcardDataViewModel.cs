@@ -27,8 +27,8 @@ namespace QuickCode.ViewModels
         public QrCodeVcardDataViewModel()
         {
             var resourceLoader = new ResourceLoader();
-            Header = resourceLoader.GetString("QrCodeVcard.Header");
-            Description = resourceLoader.GetString("QrCodeVcard.Description");
+            Header = resourceLoader.GetString("QrCodeVcard_Header");
+            Description = resourceLoader.GetString("QrCodeVcard_Description");
             IconGlyph = "&#xEA4A;";
         }
         #endregion

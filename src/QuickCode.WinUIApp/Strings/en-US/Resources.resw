@@ -147,35 +147,11 @@
   <data name="QrCodeGeneratorTextControlBox.Header" xml:space="preserve">
     <value>Text:</value>
   </data>
-  <data name="LinkTextBox.Header" xml:space="preserve">
+  <data name="QrCodeLink_UrlInputBox.Header" xml:space="preserve">
     <value>Link</value>
   </data>
-  <data name="LinkTextBox.PlaceholderText" xml:space="preserve">
+  <data name="QrCodeLink_UrlInputBox.PlaceholderText" xml:space="preserve">
     <value>https://example.com</value>
-  </data>
-  <data name="QrCodeWifiSsidBox.Header" xml:space="preserve">
-    <value>Network name (SSID)</value>
-  </data>
-  <data name="QrCodeWifiEncryptionComboBox.Header" xml:space="preserve">
-    <value>Security</value>
-  </data>
-  <data name="QrCodeWifiPasswordBox.Header" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="QrCodeWifiPasswordBox.PlaceholderText" xml:space="preserve">
-    <value>Enter password</value>
-  </data>
-  <data name="QrCodeWifiHiddenNetworkToggle.Header" xml:space="preserve">
-    <value>Hidden network</value>
-  </data>
-  <data name="QrCodeWifiHiddenNetworkToggle.OffContent" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="QrCodeWifiHiddenNetworkToggle.OnContent" xml:space="preserve">
-    <value>Yes</value>
-  </data>
-  <data name="QrCodeTypesCombobox.Header" xml:space="preserve">
-    <value>Type:</value>
   </data>
   <data name="SettingsPageTitle.Text" xml:space="preserve">
     <value>Settings</value>
@@ -189,232 +165,229 @@
   <data name="SubjectTextBox.Header" xml:space="preserve">
     <value>Subject</value>
   </data>
-  <data name="SepaNameTextBox.Header" xml:space="preserve">
-    <value>Recipient name</value>
-  </data>
-  <data name="SepaNameTextBox.PlaceholderText" xml:space="preserve">
-    <value>e.g. Alex Doe</value>
-  </data>
-  <data name="SepaIbanTextBox.Header" xml:space="preserve">
-    <value>IBAN</value>
-  </data>
-  <data name="SepaIbanTextBox.PlaceholderText" xml:space="preserve">
-    <value>e.g. DE44500105175407324931</value>
-  </data>
-  <data name="SepaBicTextBox.Header" xml:space="preserve">
-    <value>BIC (optional)</value>
-  </data>
-  <data name="SepaBicTextBox.PlaceholderText" xml:space="preserve">
-    <value>e.g. DEUTDEFF</value>
-  </data>
-  <data name="SepaAmountTextBox.Header" xml:space="preserve">
-    <value>Amount (EUR)</value>
-  </data>
-  <data name="SepaAmountTextBox.PlaceholderText" xml:space="preserve">
-    <value>e.g. 199.99</value>
-  </data>
-  <data name="SepaPurposeTextBox.Header" xml:space="preserve">
-    <value>Purpose (optional)</value>
-  </data>
-  <data name="SepaPurposeTextBox.PlaceholderText" xml:space="preserve">
-    <value>e.g. GDDS</value>
-  </data>
-  <data name="SepaPaymentReferenceTextBox.Header" xml:space="preserve">
-    <value>Payment reference (optional)</value>
-  </data>
-  <data name="SepaPaymentReferenceTextBox.PlaceholderText" xml:space="preserve">
-    <value>e.g. RF18539007547034</value>
-  </data>
-  <data name="SepaRemittanceInformationTextBox.Header" xml:space="preserve">
-    <value>Remittance information (optional)</value>
-  </data>
-  <data name="SepaRemittanceInformationTextBox.PlaceholderText" xml:space="preserve">
-    <value>Payment description</value>
-  </data>
-  <data name="SepaNoteTextBox.Header" xml:space="preserve">
-    <value>Note (optional)</value>
-  </data>
-  <data name="SepaNoteTextBox.PlaceholderText" xml:space="preserve">
-    <value>Additional note for the recipient</value>
-  </data>
-  <data name="CalendarEventNameTextBox.Header" xml:space="preserve">
+  <data name="QrCodeCalendar_NameTextBox.Header" xml:space="preserve">
     <value>Event name</value>
   </data>
-  <data name="CalendarEventNameTextBox.PlaceholderText" xml:space="preserve">
+  <data name="QrCodeCalendar_NameTextBox.PlaceholderText" xml:space="preserve">
     <value>e.g. Team sync</value>
   </data>
-  <data name="CalendarEventAllDayToggle.Header" xml:space="preserve">
+  <data name="QrCodeCalendar_AllDayToggle.Header" xml:space="preserve">
     <value>All-day event</value>
   </data>
-  <data name="CalendarEventAllDayToggle.OnContent" xml:space="preserve">
+  <data name="QrCodeCalendar_AllDayToggle.OnContent" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="CalendarEventAllDayToggle.OffContent" xml:space="preserve">
+  <data name="QrCodeCalendar_AllDayToggle.OffContent" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="CalendarEventStartDatePicker.Header" xml:space="preserve">
+  <data name="QrCodeCalendar_StartDatePicker.Header" xml:space="preserve">
     <value>Start date</value>
   </data>
   <data name="CalendarEventStartTimePicker.Header" xml:space="preserve">
     <value>Start time</value>
   </data>
-  <data name="CalendarEventEndDatePicker.Header" xml:space="preserve">
+  <data name="QrCodeCalendar_EndDatePicker.Header" xml:space="preserve">
     <value>End date</value>
   </data>
-  <data name="CalendarEventEndTimePicker.Header" xml:space="preserve">
+  <data name="QrCodeCalendar_EndTimePicker.Header" xml:space="preserve">
     <value>End time</value>
   </data>
-  <data name="CalendarEventLocationTextBox.Header" xml:space="preserve">
+  <data name="QrCodeCalendar_LocationTextBox.Header" xml:space="preserve">
     <value>Location</value>
   </data>
-  <data name="CalendarEventLocationTextBox.PlaceholderText" xml:space="preserve">
+  <data name="QrCodeCalendar_LocationTextBox.PlaceholderText" xml:space="preserve">
     <value>Conference room or meeting link</value>
   </data>
-  <data name="QrCodeVcardPersonSectionTitle.Text" xml:space="preserve">
-    <value>Person</value>
-  </data>
-  <data name="VcardFirstNameTextBox.Header" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="VcardLastNameTextBox.Header" xml:space="preserve">
-    <value>Last name</value>
-  </data>
-  <data name="QrCodeVcardContactSectionTitle.Text" xml:space="preserve">
-    <value>Contact</value>
-  </data>
-  <data name="VcardPhoneNumberTextBox.Header" xml:space="preserve">
-    <value>Phone number</value>
-  </data>
-  <data name="VcardMobileTextBox.Header" xml:space="preserve">
-    <value>Mobile</value>
-  </data>
-  <data name="VcardEmailTextBox.Header" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="VcardWebsiteTextBox.Header" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="QrCodeVcardCompanySectionTitle.Text" xml:space="preserve">
-    <value>Company information</value>
-  </data>
-  <data name="VcardCompanyNameTextBox.Header" xml:space="preserve">
-    <value>Company name</value>
-  </data>
-  <data name="VcardJobTitleTextBox.Header" xml:space="preserve">
-    <value>Job title</value>
-  </data>
-  <data name="VcardFaxTextBox.Header" xml:space="preserve">
-    <value>Fax</value>
-  </data>
-  <data name="QrCodeVcardLocationSectionTitle.Text" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="VcardAddressTextBox.Header" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="VcardCityTextBox.Header" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="VcardPostCodeTextBox.Header" xml:space="preserve">
-    <value>Post code</value>
-  </data>
-  <data name="VcardCountyTextBox.Header" xml:space="preserve">
-    <value>County</value>
-  </data>
-  <data name="QrCodeLocationLatitudeBox.Header" xml:space="preserve">
+  <data name="QrCodeLocation_LatitudeBox.Header" xml:space="preserve">
     <value>Latitude</value>
   </data>
-  <data name="QrCodeLocationLatitudeBox.PlaceholderText" xml:space="preserve">
+  <data name="QrCodeLocation_LatitudeBox.PlaceholderText" xml:space="preserve">
     <value>e.g. 51.5072</value>
   </data>
-  <data name="QrCodeLocationLongitudeBox.Header" xml:space="preserve">
+  <data name="QrCodeLocation_LongitudeBox.Header" xml:space="preserve">
     <value>Longitude</value>
   </data>
-  <data name="QrCodeLocationLongitudeBox.PlaceholderText" xml:space="preserve">
+  <data name="QrCodeLocation_LongitudeBox.PlaceholderText" xml:space="preserve">
     <value>e.g. -0.1276</value>
   </data>
-  <data name="QrCodeLocationUseCurrentLocationButton.Content" xml:space="preserve">
-    <value>Use current location</value>
-  </data>
-  <data name="QrCodeLocationPickOnMapButton.Content" xml:space="preserve">
-    <value>Pick on map</value>
-  </data>
-  <data name="QrCodeLocationStatusPermissionDenied.Text" xml:space="preserve">
-    <value>Location access is denied. Check app permissions and Windows location settings.</value>
-  </data>
-  <data name="QrCodeLocationStatusGenericError.Text" xml:space="preserve">
-    <value>We couldn't determine your location. Try again in a moment.</value>
-  </data>
-  <data name="QrCodeLocationStatusOutOfRange.Text" xml:space="preserve">
-    <value>Latitude must be between -90 and 90 and longitude between -180 and 180.</value>
-  </data>
-  <data name="QrCodeLocationPickerDialog.Title" xml:space="preserve">
-    <value>Pick a location</value>
-  </data>
-  <data name="QrCodeLocationPickerUseButton.Content" xml:space="preserve">
-    <value>Use location</value>
-  </data>
-  <data name="QrCodeLocationPickerCancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="CalendarEvent.Header" xml:space="preserve">
+  <data name="QrCodeCalendar_Header" xml:space="preserve">
     <value>Calendar event</value>
   </data>
-  <data name="CalendarEvent.Description" xml:space="preserve">
+  <data name="QrCodeCalendar_Description" xml:space="preserve">
     <value>Create an event that users can quickly add to their calendars.</value>
   </data>
-  <data name="CallQrCode.Header" xml:space="preserve">
-    <value>Call</value>
-  </data>
-  <data name="CallQrCode.Description" xml:space="preserve">
-    <value>Create a link that lets users instantly start a phone call.</value>
-  </data>
-  <data name="QrCodeEmail.Header" xml:space="preserve">
+  <data name="QrCodeEmail_Header" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="QrCodeEmail.Description" xml:space="preserve">
+  <data name="QrCodeEmail_Description" xml:space="preserve">
     <value>Generate a ready-to-send email with predefined details.</value>
   </data>
-  <data name="QrCodeLink.Header" xml:space="preserve">
+  <data name="QrCodeLink_Header" xml:space="preserve">
     <value>Link</value>
   </data>
-  <data name="QrCodeLink.Description" xml:space="preserve">
+  <data name="QrCodeLink_Description" xml:space="preserve">
     <value>Instant access to your website or landing page.</value>
   </data>
-  <data name="QrCodeLocation.Header" xml:space="preserve">
+  <data name="QrCodeLocation_Header" xml:space="preserve">
     <value>Location</value>
   </data>
-  <data name="QrCodeLocation.Description" xml:space="preserve">
+  <data name="QrCodeLocation_Description" xml:space="preserve">
     <value>Generate a map location for quick navigation.</value>
   </data>
-  <data name="QrCodeSepaPayment.Header" xml:space="preserve">
-    <value>SEPA Payment</value>
+  <data name="QrCodeCall_Header" xml:space="preserve">
+    <value>Call</value>
   </data>
-  <data name="QrCodeSepaPayment.Description" xml:space="preserve">
-    <value>Generate prefilled SEPA payment details for quick transfers.</value>
+  <data name="QrCodeCall_Description" xml:space="preserve">
+    <value>Create a link that lets users instantly start a phone call.</value>
   </data>
-  <data name="QrCodeSms.Header" xml:space="preserve">
-    <value>SMS</value>
-  </data>
-  <data name="QrCodeSms.Description" xml:space="preserve">
-    <value>Open a prefilled SMS message.</value>
-  </data>
-  <data name="QrCodeText.Description" xml:space="preserve">
-    <value>Show custom text content.</value>
-  </data>
-  <data name="QrCodeText.Header" xml:space="preserve">
-    <value>Text</value>
-  </data>
-  <data name="QrCodeVcard.Header" xml:space="preserve">
-    <value>Contact</value>
-  </data>
-  <data name="QrCodeVcard.Description" xml:space="preserve">
-    <value>“Add a contact directly to the address book.</value>
-  </data>
-  <data name="QrCodeWifi.Header" xml:space="preserve">
+  <data name="QrCodeWifi_Header" xml:space="preserve">
     <value>Wi-Fi</value>
   </data>
-  <data name="QrCodeWifi.Description" xml:space="preserve">
+  <data name="QrCodeWifi_Description" xml:space="preserve">
     <value>Connect to Wi-Fi effortlessly.</value>
+  </data>
+  <data name="QrCodeWifi_SsidBox.Header" xml:space="preserve">
+    <value>Network name (SSID)</value>
+  </data>
+  <data name="QrCodeWifi_PasswordBox.Header" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="QrCodeWifi_PasswordBox.PlaceholderText" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="QrCodeWifi_HiddenNetworkToggle.Header" xml:space="preserve">
+    <value>Hidden network</value>
+  </data>
+  <data name="QrCodeWifi_HiddenNetworkToggle.OffContent" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="QrCodeWifi_HiddenNetworkToggle.OnContent" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="QrCodeWifi_EncryptionCombobox.Header" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="QrCodeVcard_WebsiteTextBox.Header" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="QrCodeVcard_PostCodeTextBox.Header" xml:space="preserve">
+    <value>Post code</value>
+  </data>
+  <data name="QrCodeVcard_PhoneNumberTextBox.Header" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="QrCodeVcard_PersonSectionTitle.Text" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="QrCodeVcard_MobileTextBox.Header" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="QrCodeVcard_LocationSectionTitle.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="QrCodeVcard_LastNameTextBox.Header" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="QrCodeVcard_JobTitleTextBox.Header" xml:space="preserve">
+    <value>Job title</value>
+  </data>
+  <data name="QrCodeVcard_FirstNameTextBox.Header" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="QrCodeVcard_FaxTextBox.Header" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="QrCodeVcard_EmailTextBox.Header" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="QrCodeVcard_CountyTextBox.Header" xml:space="preserve">
+    <value>County</value>
+  </data>
+  <data name="QrCodeVcard_ContactSectionTitle.Text" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="QrCodeVcard_CompanySectionTitle.Text" xml:space="preserve">
+    <value>Company information</value>
+  </data>
+  <data name="QrCodeVcard_CompanyNameTextBox.Header" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="QrCodeVcard_CityTextBox.Header" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="QrCodeVcard_AddressTextBox.Header" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="QrCodeVcard_Header" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="QrCodeVcard_Description" xml:space="preserve">
+    <value>“Add a contact directly to the address book.</value>
+  </data>
+  <data name="QrCodeText_Header" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="QrCodeText_Description" xml:space="preserve">
+    <value>Show custom text content.</value>
+  </data>
+  <data name="QrCodeSms_Header" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="QrCodeSms_Description" xml:space="preserve">
+    <value>Open a prefilled SMS message.</value>
+  </data>
+  <data name="QrCodeSepa_RemittanceInformationTextBox.Header" xml:space="preserve">
+    <value>Remittance information (optional)</value>
+  </data>
+  <data name="QrCodeSepa_RemittanceInformationTextBox.PlaceholderText" xml:space="preserve">
+    <value>Payment description</value>
+  </data>
+  <data name="QrCodeSepa_PurposeTextBox.Header" xml:space="preserve">
+    <value>Purpose (optional)</value>
+  </data>
+  <data name="QrCodeSepa_PurposeTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. GDDS</value>
+  </data>
+  <data name="QrCodeSepa_PaymentReferenceTextBox.Header" xml:space="preserve">
+    <value>Payment reference (optional)</value>
+  </data>
+  <data name="QrCodeSepa_PaymentReferenceTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. RF18539007547034</value>
+  </data>
+  <data name="QrCodeSepa_Header" xml:space="preserve">
+    <value>SEPA Payment</value>
+  </data>
+  <data name="QrCodeSepa_Description" xml:space="preserve">
+    <value>Generate prefilled SEPA payment details for quick transfers.</value>
+  </data>
+  <data name="QrCodeSepa_NoteTextBox.Header" xml:space="preserve">
+    <value>Note (optional)</value>
+  </data>
+  <data name="QrCodeSepa_NoteTextBox.PlaceholderText" xml:space="preserve">
+    <value>Additional note for the recipient</value>
+  </data>
+  <data name="QrCodeSepa_NameTextBox.Header" xml:space="preserve">
+    <value>Recipient name</value>
+  </data>
+  <data name="QrCodeSepa_NameTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. Alex Doe</value>
+  </data>
+  <data name="QrCodeSepa_IbanTextBox.Header" xml:space="preserve">
+    <value>IBAN</value>
+  </data>
+  <data name="QrCodeSepa_IbanTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. DE44500105175407324931</value>
+  </data>
+  <data name="QrCodeSepa_BicTextBox.Header" xml:space="preserve">
+    <value>BIC (optional)</value>
+  </data>
+  <data name="QrCodeSepa_BicTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. DEUTDEFF</value>
+  </data>
+  <data name="QrCodeSepa_AmountTextBox.Header" xml:space="preserve">
+    <value>Amount (EUR)</value>
+  </data>
+  <data name="QrCodeSepa_AmountTextBox.PlaceholderText" xml:space="preserve">
+    <value>e.g. 199.99</value>
   </data>
 </root>

@@ -23,11 +23,11 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" MinWidth="220"
-                 x:Uid="CalendarEventNameTextBox"
+                 x:Uid="QrCodeCalendar_NameTextBox"
                  Text="{Binding EventName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <ToggleSwitch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                      x:Uid="CalendarEventAllDayToggle"
+                      x:Uid="QrCodeCalendar_AllDayToggle"
                       IsOn="{Binding IsAllDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ColumnSpacing="10">
@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <DatePicker Grid.Column="0"
-                        x:Uid="CalendarEventStartDatePicker"
+                        x:Uid="QrCodeCalendar_StartDatePicker"
                         Date="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TimePicker Grid.Column="1"
                         x:Uid="CalendarEventStartTimePicker"
@@ -50,16 +50,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <DatePicker Grid.Column="0"
-                        x:Uid="CalendarEventEndDatePicker"
+                        x:Uid="QrCodeCalendar_EndDatePicker"
                         Date="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TimePicker Grid.Column="1"
-                        x:Uid="CalendarEventEndTimePicker"
+                        x:Uid="QrCodeCalendar_EndTimePicker"
                         IsEnabled="{Binding IsAllDay, Converter={StaticResource BooleanNegationConverter}}"
                         SelectedTime="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
-                 x:Uid="CalendarEventLocationTextBox"
+                 x:Uid="QrCodeCalendar_LocationTextBox"
                  Text="{Binding Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

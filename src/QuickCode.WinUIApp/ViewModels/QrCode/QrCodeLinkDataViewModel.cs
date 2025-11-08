@@ -14,8 +14,8 @@ namespace QuickCode.ViewModels
         public QrCodeLinkDataViewModel()
         {
             var resourceLoader = new ResourceLoader();
-            Header = resourceLoader.GetString("QrCodeLink.Header");
-            Description = resourceLoader.GetString("QrCodeLink.Description");
+            Header = resourceLoader.GetString("QrCodeLink_Header");
+            Description = resourceLoader.GetString("QrCodeLink_Description");
             IconGlyph = "&#xE71B;";
         }
         #endregion

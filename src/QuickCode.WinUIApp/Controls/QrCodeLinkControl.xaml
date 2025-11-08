@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:QrCodeLinkDataViewModel, IsDesignTimeCreatable=False}">
     <Grid>
-        <TextBox x:Uid="LinkTextBox"
+        <TextBox x:Uid="QrCodeLink_UrlInputBox"
                  Text="{Binding Link, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  TextWrapping="NoWrap"
                  AcceptsReturn="False"/>
