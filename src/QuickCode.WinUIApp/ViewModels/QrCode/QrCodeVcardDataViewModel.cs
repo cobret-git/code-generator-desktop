@@ -29,7 +29,7 @@ namespace QuickCode.ViewModels
             var resourceLoader = new ResourceLoader();
             Header = resourceLoader.GetString("QrCodeVcard_Header");
             Description = resourceLoader.GetString("QrCodeVcard_Description");
-            IconGlyph = "&#xEA4A;";
+            IconGlyph = "\uE779";
         }
         #endregion
 

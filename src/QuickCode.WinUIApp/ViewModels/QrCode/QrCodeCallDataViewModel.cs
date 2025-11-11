@@ -16,7 +16,7 @@ namespace QuickCode.ViewModels
             var resourceLoader = new ResourceLoader();
             Header = resourceLoader.GetString("QrCodeCall_Header");
             Description = resourceLoader.GetString("QrCodeCall_Description");
-            IconGlyph = "&#xE717;";
+            IconGlyph = "\uE717";
         }
         #endregion
 

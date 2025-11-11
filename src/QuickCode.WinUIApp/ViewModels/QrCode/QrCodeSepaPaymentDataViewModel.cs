@@ -25,7 +25,7 @@ namespace QuickCode.ViewModels
             var resourceLoader = new ResourceLoader();
             Header = resourceLoader.GetString("QrCodeSepa_Header");
             Description = resourceLoader.GetString("QrCodeSepa_Description");
-            IconGlyph = "&#xE8C7;";
+            IconGlyph = "\uE8C7";
         }
         #endregion
 

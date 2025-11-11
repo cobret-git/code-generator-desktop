@@ -17,7 +17,7 @@ namespace QuickCode.ViewModels
             var resourceLoader = new ResourceLoader();
             Header = resourceLoader.GetString("QrCodeSms_Header");
             Description = resourceLoader.GetString("QrCodeSms_Description");
-            IconGlyph = "&#xE8BD;";
+            IconGlyph = "\uE8BD";
         }
         #endregion
 

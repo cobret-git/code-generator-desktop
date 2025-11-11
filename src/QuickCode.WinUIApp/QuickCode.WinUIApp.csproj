@@ -13,6 +13,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Assets\Xaml\Styles.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Xaml\Styles.xaml" />
     <None Remove="Controls\MarkdownTextControl.xaml" />
     <None Remove="Controls\QrCodeCallControl.xaml" />
     <None Remove="Controls\QrCodeEmailControl.xaml" />
@@ -65,6 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Assets\Xaml\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\QrCodeEmailControl.xaml">

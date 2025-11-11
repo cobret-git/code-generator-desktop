@@ -390,4 +390,28 @@
   <data name="QrCodeSepa_AmountTextBox.PlaceholderText" xml:space="preserve">
     <value>e.g. 199.99</value>
   </data>
+  <data name="QrCodeSection_Type_Header.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="QrCodeSection_Type_Description.Text" xml:space="preserve">
+    <value>Select what kind of QR code you want to create (text, URL, phone, or more).</value>
+  </data>
+  <data name="QrCodeSection_Content_Header.Text" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="QrCodeSection_Content_Description.Text" xml:space="preserve">
+    <value>Enter the information that will be stored inside your QR code.</value>
+  </data>
+  <data name="QrCodeSection_Style_Header.Text" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="QrCodeSection_Style_Description.Text" xml:space="preserve">
+    <value>Customize how your QR code looks — colors, gradients, and more.</value>
+  </data>
+  <data name="QrCodeSection_Advanced_Header.Text" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="QrCodeSection_Advanced_Description.Text" xml:space="preserve">
+    <value>Adjust technical settings for generation precision and error correction.</value>
+  </data>
 </root>

@@ -21,7 +21,7 @@ namespace QuickCode.ViewModels
             var resourceLoader = new ResourceLoader();
             Header = resourceLoader.GetString("QrCodeWifi_Header");
             Description = resourceLoader.GetString("QrCodeWifi_Description");
-            IconGlyph = "&#xE701;";
+            IconGlyph = "\uE701";
             Encryptions = Enum.GetValues<WifiEncryptionType>();
             SelectedEncryption = WifiEncryptionType.WPA2;
         }
