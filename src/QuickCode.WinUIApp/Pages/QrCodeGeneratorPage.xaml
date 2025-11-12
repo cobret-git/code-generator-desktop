@@ -9,145 +9,245 @@
     xmlns:vm="using:QuickCode.ViewModels"
     xmlns:controls="using:QuickCode.Controls"
     xmlns:selectors="using:QuickCode.Components.TemplateSelectors"
+    xmlns:data="using:QuickCode.Components.Data"
     d:DataContext="{d:DesignInstance vm:QrCodeGeneratorPageViewModel, IsDesignTimeCreatable=False}"
     mc:Ignorable="d" HorizontalAlignment="Stretch">
-    <Grid Margin="58,20,10,0" ColumnSpacing="10" MaxWidth="1200">
+    
+    <Grid Margin="58,20,10,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
 
 
-        <StackPanel Grid.Row="0" Orientation="Vertical">
+        <StackPanel Grid.Row="0" Orientation="Vertical" MaxWidth="1200" HorizontalAlignment="Stretch">
             <TextBlock x:Uid="QrCodeGeneratorPageTitle" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,24"/>
             <!--<TextBlock x:Uid="QrCodeGeneratorPageDescription" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,20"/>-->
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-            
-            <ContentControl Template
-            
-            <!--type selection-->
-            <Expander Style="{StaticResource SettingsSectionExpanderStyle}">
-                <Expander.Header>
-                    <Grid ColumnSpacing="16" RowSpacing="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xE81E;" FontSize="22" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Type_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Type_Description" Style="{StaticResource CaptionTextBlockStyle}"
-                                   Opacity="0.8"/>
-                    </Grid>
-                </Expander.Header>
-                <GridView ItemsSource="{Binding DataModels, Mode=OneWay}" 
-                          HorizontalAlignment="Stretch">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid x:Name="MaxItemsWrapGrid" MaximumRowsOrColumns="3" Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                            <Setter Property="Padding" Value="8,6"/>
-                        </Style>
-                    </GridView.ItemContainerStyle>
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid HorizontalAlignment="Left" ColumnSpacing="16">
+        <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" HorizontalScrollMode="Disabled"
+                      HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Border>
+                <StackPanel Orientation="Vertical" MaxWidth="1200" HorizontalAlignment="Stretch">
+
+                    <StackPanel Orientation="Horizontal" Margin="3,0,0,24">
+                        <Grid Width="189" Height="189">
+                            <Image Width="189" Height="189" 
+                                   Visibility="{Binding QrCodePreviewSvg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullToVisibilityConverter}}"
+                                   Source="{Binding QrCodePreviewSvg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Opacity="{Binding IsBusy, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BusyStatusOpacityConverter}}"/>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xED14;" FontSize="128"
+                                      Opacity="{Binding IsBusy, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BusyStatusOpacityConverter}}"
+                                      Visibility="{Binding QrCodePreviewSvg, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullToInversedVisibilityConverter}}"/>
+                            <ProgressRing IsIndeterminate="{Binding IsBusy, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                        <StackPanel Margin="16,0,0,0" VerticalAlignment="Center">
+                            <SplitButton Command="{Binding ExportAsImageCommand}" 
+                                         CommandParameter="{Binding SelectedExportOption, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon Glyph="&#xE896;" FontSize="16"/>
+                                    <TextBlock Margin="8,0,0,0">
+                                        <Run x:Uid="DownloadAsSplitButton"/>
+                                        <Run x:Name="DownloadSelectedOption" x:Uid="AsSvgMenuItem"/>
+                                    </TextBlock>
+                                </StackPanel>
+                                <SplitButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem x:Uid="AsSvgMenuItem" Click="MenuFlyoutItem_Click"
+                                                        Command="{Binding ExportAsImageCommand}" CommandParameter="{x:Bind data:ExportImageOptinos.Svg}"/>
+                                        <MenuFlyoutItem x:Uid="AsPngXsMenuItem" Click="MenuFlyoutItem_Click"
+                                                        Command="{Binding ExportAsImageCommand}" CommandParameter="{x:Bind data:ExportImageOptinos.PngXs}"/>
+                                        <MenuFlyoutItem x:Uid="AsPngSMenuItem" Click="MenuFlyoutItem_Click"
+                                                        Command="{Binding ExportAsImageCommand}" CommandParameter="{x:Bind data:ExportImageOptinos.PngS}"/>
+                                        <MenuFlyoutItem x:Uid="AsPngMMenuItem" Click="MenuFlyoutItem_Click"
+                                                        Command="{Binding ExportAsImageCommand}" CommandParameter="{x:Bind data:ExportImageOptinos.PngM}"/>
+                                        <MenuFlyoutItem x:Uid="AsPngLMenuItem" Click="MenuFlyoutItem_Click"
+                                                        Command="{Binding ExportAsImageCommand}" CommandParameter="{x:Bind data:ExportImageOptinos.PngL}"/>
+                                        <MenuFlyoutItem x:Uid="AsPngXlMenuItem" Click="MenuFlyoutItem_Click"
+                                                        Command="{Binding ExportAsImageCommand}" CommandParameter="{x:Bind data:ExportImageOptinos.PngXl}"/>
+                                    </MenuFlyout>
+                                </SplitButton.Flyout>
+                            </SplitButton>
+                            <Button FontFamily="Segoe MDL2 Assets" Margin="0,16,0,0" Content="&#xE895;"
+                                    Command="{Binding RegenerateQrCodeCommand}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--type selection-->
+                    <Expander Style="{StaticResource SettingsSectionExpanderStyle}">
+                        <Expander.Header>
+                            <Grid ColumnSpacing="16" RowSpacing="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <FontIcon Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Glyph="{Binding IconGlyph}"
-                                          FontSize="24"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Header, Mode=OneTime}"
-                                           Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description, Mode=OneTime}"
-                                           TextWrapping="Wrap" MaxWidth="220"
-                                           Style="{StaticResource CaptionTextBlockStyle}"/>
+                                <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xE81E;" FontSize="22" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Type_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Type_Description" Style="{StaticResource CaptionTextBlockStyle}"
+                                           Opacity="0.8"/>
                             </Grid>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-            </Expander>
-            
-            <!--content selection-->
-            <Expander Style="{StaticResource SettingsSectionExpanderStyle}">
-                <Expander.Header>
-                    <Grid ColumnSpacing="16" RowSpacing="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xECCD;" FontSize="22" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Content_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Content_Description" Style="{StaticResource CaptionTextBlockStyle}"
-                   Opacity="0.8"/>
-                    </Grid>
-                </Expander.Header>
-            </Expander>
-            
-            <!--style selection-->
-            <Expander Style="{StaticResource SettingsSectionExpanderStyle}">
-                <Expander.Header>
-                    <Grid ColumnSpacing="16" RowSpacing="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xE771;" FontSize="20" Width="22" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Style_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Style_Description" Style="{StaticResource CaptionTextBlockStyle}"
-                   Opacity="0.8"/>
-                    </Grid>
-                </Expander.Header>
-            </Expander>
-            
-            <!--advanced selection-->
-            <Expander Style="{StaticResource SettingsSectionExpanderStyle}">
-                <Expander.Header>
-                    <Grid ColumnSpacing="16" RowSpacing="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xE712;" FontSize="20" Width="22" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Advanced_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Advanced_Description" Style="{StaticResource CaptionTextBlockStyle}"
-                   Opacity="0.8"/>
-                    </Grid>
-                </Expander.Header>
-            </Expander>
-            
-        </StackPanel>
+                        </Expander.Header>
+                        <GridView ItemsSource="{Binding DataModels, Mode=OneWay}" 
+                                  SelectedItem="{Binding SelectedDataModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  HorizontalAlignment="Stretch">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid x:Name="MaxItemsWrapGrid" MaximumRowsOrColumns="3" Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemContainerStyle>
+                                <Style TargetType="GridViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                    <Setter Property="Padding" Value="8,6"/>
+                                </Style>
+                            </GridView.ItemContainerStyle>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Left" ColumnSpacing="16">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Glyph="{Binding IconGlyph}"
+                                                  FontSize="24"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Header, Mode=OneTime}"
+                                                   Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description, Mode=OneTime}"
+                                                   TextWrapping="Wrap" MaxWidth="220"
+                                                   Style="{StaticResource CaptionTextBlockStyle}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Expander>
+
+                    <!--content selection-->
+                    <Expander Style="{StaticResource SettingsSectionExpanderStyle}" HorizontalContentAlignment="Stretch">
+                        <Expander.Header>
+                            <Grid ColumnSpacing="16" RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xECCD;" FontSize="22" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Content_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Content_Description" Style="{StaticResource CaptionTextBlockStyle}"
+                                           Opacity="0.8"/>
+                            </Grid>
+                        </Expander.Header>
+                        <ContentControl Content="{Binding SelectedDataModel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                        HorizontalContentAlignment="Stretch">
+                            <ContentControl.ContentTemplateSelector>
+                                <selectors:QrCodeDataControlTemplateSelector>
+                                    <selectors:QrCodeDataControlTemplateSelector.CalendarEventDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeCalendarEventViewModel">
+                                            <controls:QrCodeCalendarEventControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.CalendarEventDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.CallDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeCallDataViewModel">
+                                            <controls:QrCodeCallControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.CallDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.EmailDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeEmailDataViewModel">
+                                            <controls:QrCodeEmailControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.EmailDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.LinkDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeLinkDataViewModel">
+                                            <controls:QrCodeLinkControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.LinkDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.LocationDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeLocationViewModel">
+                                            <controls:QrCodeLocationControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.LocationDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.SepaPaymentDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeSepaPaymentDataViewModel">
+                                            <controls:QrCodeSepaPaymentControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.SepaPaymentDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.SmsDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeSmsDataViewModel">
+                                            <controls:QrCodeSmsControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.SmsDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.TextDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeTextDataViewModel">
+                                            <controls:QrCodeTextControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.TextDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.VcardDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeVcardDataViewModel">
+                                            <controls:QrCodeVcardControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.VcardDataControlTemplate>
+                                    <selectors:QrCodeDataControlTemplateSelector.WifiDataControlTemplate>
+                                        <DataTemplate x:DataType="vm:QrCodeWifiDataViewModel">
+                                            <controls:QrCodeWifiControl/>
+                                        </DataTemplate>
+                                    </selectors:QrCodeDataControlTemplateSelector.WifiDataControlTemplate>
+                                </selectors:QrCodeDataControlTemplateSelector>
+                            </ContentControl.ContentTemplateSelector>
+                        </ContentControl>
+                    </Expander>
+
+                    <!--style selection-->
+                    <Expander Style="{StaticResource SettingsSectionExpanderStyle}">
+                        <Expander.Header>
+                            <Grid ColumnSpacing="16" RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xE771;" FontSize="20" Width="22" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Style_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Style_Description" Style="{StaticResource CaptionTextBlockStyle}"
+                                           Opacity="0.8"/>
+                            </Grid>
+                        </Expander.Header>
+                    </Expander>
+
+                    <!--advanced selection-->
+                    <Expander Style="{StaticResource SettingsSectionExpanderStyle}">
+                        <Expander.Header>
+                            <Grid ColumnSpacing="16" RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Grid.RowSpan="2" Grid.Column="0" Glyph="&#xE712;" FontSize="20" Width="22" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="QrCodeSection_Advanced_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" x:Uid="QrCodeSection_Advanced_Description" Style="{StaticResource CaptionTextBlockStyle}"
+                                           Opacity="0.8"/>
+                            </Grid>
+                        </Expander.Header>
+                    </Expander>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
 
 
         <!--<ComboBox Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"

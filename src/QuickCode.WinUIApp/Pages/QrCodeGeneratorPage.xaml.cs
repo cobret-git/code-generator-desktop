@@ -24,5 +24,10 @@ namespace QuickCode.Pages
             this.DataContext = App.Current.Services.GetService<QrCodeGeneratorPageViewModel>();
             InitializeComponent();
         }
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is not MenuFlyoutItem item) return;
+            DownloadSelectedOption.Text = item.Text;
+        }
     }
 }
