@@ -10,6 +10,9 @@ using Microsoft.Windows.Storage.Pickers;
 using QRCoder;
 using QuickCode.Components.Data;
 using QuickCode.Model;
+using SkiaSharp;
+using Svg;
+using Svg.Skia;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,6 +37,7 @@ namespace QuickCode.ViewModels
         private SvgImageSource? qrCodePreviewSvg;
         private string? plainText;
         private ExportImageOptinos selectedExportOption = ExportImageOptinos.Svg;
+        private SKSvg? svg = null;
         #endregion
 
         #region Constructors
@@ -174,42 +178,26 @@ namespace QuickCode.ViewModels
         }
         private async Task SaveToPngFile(Stream stream, int size)
         {
-            // Create container
-            var container = new Grid
-            {
-                Width = size,
-                Height = size,
-                Background = new SolidColorBrush(Colors.Transparent)
-            };
+            using var memStream = new MemoryStream(svgProcessor.ToByteArray());
+            var svgPath = svgProcessor.ToSvgString();
+            var svg = this.svg ?? new SKSvg();
+            if (this.svg == null) this.svg = svg;
+            svg.Load(memStream);
 
-            var image = new Image
-            {
-                Source = QrCodePreviewSvg,
-                Width = size,
-                Height = size
-            };
+            var info = new SKImageInfo(size, size);
+            using var surface = SKSurface.Create(info);
+            using var canvas = surface.Canvas;
+            canvas.Clear(SKColors.Transparent);
 
-            container.Children.Add(image);
+            // Scale to fit
+            var scaleX = (float)size / svg.Picture.CullRect.Width;
+            var scaleY = (float)size / svg.Picture.CullRect.Height;
+            canvas.Scale(Math.Min(scaleX, scaleY));
+            canvas.DrawPicture(svg.Picture);
 
-            // Measure and arrange
-            container.Measure(new Size(size, size));
-            container.Arrange(new Rect(0, 0, size, size));
-
-            // Render
-            var renderTarget = new RenderTargetBitmap();
-            await renderTarget.RenderAsync(image);
-            var pixelBuffer = await renderTarget.GetPixelsAsync();
-            var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream.AsRandomAccessStream());
-            encoder.SetPixelData(
-                BitmapPixelFormat.Bgra8,
-                BitmapAlphaMode.Premultiplied,
-                (uint)renderTarget.PixelWidth,
-                (uint)renderTarget.PixelHeight,
-                96, // DPI X
-                96, // DPI Y
-                pixelBuffer.ToArray()
-            );
-            await encoder.FlushAsync();
+            using var image = surface.Snapshot();
+            using var data = image.Encode(SKEncodedImageFormat.Png, 100);
+            data.SaveTo(stream);
         }
         private void NotifyCanExecuteChanged()
         {
