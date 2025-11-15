@@ -435,4 +435,40 @@
   <data name="AsPngXlMenuItem.Text" xml:space="preserve">
     <value>PNG (2048×2048)</value>
   </data>
+  <data name="BackgroundStyleSection_Header.Text" xml:space="preserve">
+    <value>Background Style</value>
+  </data>
+  <data name="BackgroundStyleRadioButton_Transparent.Content" xml:space="preserve">
+    <value>Transparent</value>
+  </data>
+  <data name="BackgroundStyleRadioButton_Solid.Content" xml:space="preserve">
+    <value>Solid Color</value>
+  </data>
+  <data name="BackgroundStyleRadioButton_LinearGradient.Content" xml:space="preserve">
+    <value>Linear Gradient</value>
+  </data>
+  <data name="SolidColorSelectionField.Text" xml:space="preserve">
+    <value>Select Solid Color</value>
+  </data>
+  <data name="LinearGradientDirection_LeftToRight" xml:space="preserve">
+    <value>Left to Right</value>
+  </data>
+  <data name="LinearGradientDirection_TopToBottom" xml:space="preserve">
+    <value>Top to Bottom</value>
+  </data>
+  <data name="LinearGradientDirection_TopLeftToBottomRight" xml:space="preserve">
+    <value>Top-left to Bottom-right</value>
+  </data>
+  <data name="LinearGradientDirection_BottomLeftToTopRight" xml:space="preserve">
+    <value>Bottom-left to Top-right</value>
+  </data>
+  <data name="LinearGradientDirection_Combobox.Header" xml:space="preserve">
+    <value>Gradient Direction</value>
+  </data>
+  <data name="LinearGradient_StartColor.Text" xml:space="preserve">
+    <value>Start Color</value>
+  </data>
+  <data name="LinearGradient_EndColor.Text" xml:space="preserve">
+    <value>End Color</value>
+  </data>
 </root>

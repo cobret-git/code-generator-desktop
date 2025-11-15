@@ -3,25 +3,20 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
-using Microsoft.Windows.Storage.Pickers;
 using QRCoder;
 using QuickCode.Components.Data;
 using QuickCode.Model;
 using SkiaSharp;
-using Svg;
 using Svg.Skia;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Graphics.Imaging;
+using Windows.UI;
 using WinRT.Interop;
 
 namespace QuickCode.ViewModels
@@ -38,6 +33,14 @@ namespace QuickCode.ViewModels
         private string? plainText;
         private ExportImageOptinos selectedExportOption = ExportImageOptinos.Svg;
         private SKSvg? svg = null;
+        private Brush bgBrush = new SolidColorBrush(Colors.White);
+        private Color solidBgColor = Colors.White;
+        private LinearGradientDirection bgGradientDirection = LinearGradientDirection.TopToBottom;
+        private Color linearBgGradientFirstStopColor = Color.FromArgb(0xff, 0x43, 0x9c, 0xfb);
+        private Color linearBgGradientLastStopColor = Color.FromArgb(0xff, 0xf1, 0x87, 0xfb);
+        private bool isBackgroundTransparent;
+        private bool isBackgroundSolid = true;
+        private bool isBackgroundLinearGradient;
         #endregion
 
         #region Constructors
@@ -63,12 +66,120 @@ namespace QuickCode.ViewModels
         public ExportImageOptinos SelectedExportOption { get => selectedExportOption; set { selectedExportOption = value; OnPropertyChanged(); } }
         public IQrCodeDataViewModel SelectedDataModel { get => selectedDataModel; set => SelectDataModel(value); }
         public IQrCodeDataViewModel[] DataModels { get; }
+        public LinearGradientDirection[] GradientDirections { get; } = Enum.GetValues<LinearGradientDirection>();
         public bool IsBusy { get => isBusy; private set { isBusy = value; OnIsBusyChanged(); } }
         public SvgImageSource? QrCodePreviewSvg { get => qrCodePreviewSvg; private set { qrCodePreviewSvg = value; OnPropertyChanged(); } }
+        public Brush BackgroundBrush
+        {
+            get => bgBrush;
+            set
+            {
+                if (bgBrush == value) return;
+                bgBrush = value; 
+                OnBackgroundBrushChanged();
+            }
+        }
+        public Color SolidBackgroundColor 
+        { 
+            get => solidBgColor; 
+            set 
+            { 
+                if (solidBgColor == value) return;
+                solidBgColor = value; 
+                if (bgBrush is SolidColorBrush solidBrush) solidBrush.Color = value;
+                OnPropertyChanged();
+                OnBackgroundBrushChanged();
+            } 
+        }
+        public LinearGradientDirection BackgroundGradientDirection
+        {
+            get => bgGradientDirection;
+            set
+            {
+                if (bgGradientDirection == value) return;
+                bgGradientDirection = value;
+                if (bgBrush is LinearGradientBrush gradient) ApplyGradientDirection(gradient, value);
+                OnPropertyChanged();
+                OnBackgroundBrushChanged();
+            }
+        }
+        public Color BackgroundGradientFirstStopColor
+        {
+            get => linearBgGradientFirstStopColor;
+            set
+            {
+                if (linearBgGradientFirstStopColor == value) return;
+                linearBgGradientFirstStopColor = value;
+                if (BackgroundBrush is LinearGradientBrush gradient)
+                    gradient.GradientStops.First().Color = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(BackgroundGradientFirstStopBrush));
+                OnBackgroundBrushChanged();
+            }
+        }
+        public Color BackgroundGradientLastStopColor
+        {
+            get => linearBgGradientLastStopColor;
+            set
+            {
+                if (linearBgGradientLastStopColor == value) return;
+                linearBgGradientLastStopColor = value;
+                if (BackgroundBrush is LinearGradientBrush gradient)
+                    gradient.GradientStops.Last().Color = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(BackgroundGradientLastStopBrush));
+                OnBackgroundBrushChanged();
+            }
+        }
+        public SolidColorBrush BackgroundGradientFirstStopBrush { get => new SolidColorBrush(BackgroundGradientFirstStopColor); }
+        public SolidColorBrush BackgroundGradientLastStopBrush { get => new SolidColorBrush(BackgroundGradientLastStopColor); }
+        public bool IsBackgroundTransparent 
+        { 
+            get => isBackgroundTransparent ; 
+            set 
+            { 
+                if (isBackgroundTransparent == value) return;
+                isBackgroundTransparent  = value;
+                if (value) BackgroundBrush = new SolidColorBrush(Colors.Transparent);
+                OnPropertyChanged(); 
+            } 
+        }
+        public bool IsBackgroundSolid 
+        { 
+            get => isBackgroundSolid ; 
+            set 
+            { 
+                if (isBackgroundSolid == value) return;
+                isBackgroundSolid  = value;
+                if (value) BackgroundBrush = new SolidColorBrush(solidBgColor);
+                OnPropertyChanged();
+            } 
+        }
+        public bool IsBackgroundLinearGradient 
+        { 
+            get => isBackgroundLinearGradient; 
+            set 
+            {
+                if (isBackgroundLinearGradient == value) return;
+                isBackgroundLinearGradient = value;
+                if (value)
+                {
+                    var brush = new LinearGradientBrush(new()
+                    {
+                        new GradientStop() { Color = BackgroundGradientFirstStopColor, Offset = 0 },
+                        new GradientStop() { Color = BackgroundGradientLastStopColor, Offset = 1 }
+                    }, 0);
+                    ApplyGradientDirection(brush, BackgroundGradientDirection);
+                    BackgroundBrush = brush;
+                }                    
+                OnPropertyChanged();
+            } 
+        }
         #endregion
 
         #region Commands
-        [RelayCommand(CanExecute = nameof(CanRegenerate))] private async Task ExportAsImage(ExportImageOptinos options)
+        [RelayCommand(CanExecute = nameof(CanRegenerate))]
+        private async Task ExportAsImage(ExportImageOptinos options)
         {
             try
             {
@@ -87,11 +198,11 @@ namespace QuickCode.ViewModels
                 switch (options)
                 {
                     case ExportImageOptinos.Svg: SaveToSvgFile(stream, svgProcessor); break;
-                    case ExportImageOptinos.PngXs: await SaveToPngFile(stream, 128); break;
-                    case ExportImageOptinos.PngS: await SaveToPngFile(stream, 256); break; 
-                    case ExportImageOptinos.PngM: await SaveToPngFile(stream, 512); break; 
-                    case ExportImageOptinos.PngL: await SaveToPngFile(stream, 1024); break; 
-                    case ExportImageOptinos.PngXl: await SaveToPngFile(stream, 2048); break; 
+                    case ExportImageOptinos.PngXs: SaveToPngFile(stream, 128); break;
+                    case ExportImageOptinos.PngS: SaveToPngFile(stream, 256); break;
+                    case ExportImageOptinos.PngM: SaveToPngFile(stream, 512); break;
+                    case ExportImageOptinos.PngL: SaveToPngFile(stream, 1024); break;
+                    case ExportImageOptinos.PngXl: SaveToPngFile(stream, 2048); break;
                     default: throw new NotImplementedException();
                 }
             }
@@ -100,7 +211,8 @@ namespace QuickCode.ViewModels
 
             }
         }
-        [RelayCommand(CanExecute = nameof(CanRegenerate))] private async Task RegenerateQrCode()
+        [RelayCommand(CanExecute = nameof(CanRegenerate))]
+        private async Task RegenerateQrCode()
         {
             IsBusy = true;
             await GenerateQrCodeSvgAsync(plainText);
@@ -112,6 +224,14 @@ namespace QuickCode.ViewModels
         {
             NotifyCanExecuteChanged();
             plainText = e;
+            IsBusy = true;
+            timer.Stop();
+            timer.Start();
+        }
+        private void OnBackgroundBrushChanged()
+        {
+            NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(BackgroundBrush));
             IsBusy = true;
             timer.Stop();
             timer.Start();
@@ -156,6 +276,15 @@ namespace QuickCode.ViewModels
                     using var qrCode = new SvgQRCode(qrCodeData);
                     var svgXml = qrCode.GetGraphic(20);
                     this.svgProcessor = new QrCodeSvgProcessor(svgXml);
+                    if (BackgroundBrush is LinearGradientBrush gradientBrush)
+                    {
+                        svgProcessor.AddGradient(gradientBrush);
+                        svgProcessor.SetBackground(gradientBrush);
+                    }
+                    else if (BackgroundBrush is SolidColorBrush solidBrush)
+                    {
+                        svgProcessor.SetBackground(solidBrush.Color);
+                    }
                     using var stream = new MemoryStream(svgProcessor.ToByteArray());
                     using var randomAccessStream = stream.AsRandomAccessStream();
 
@@ -176,13 +305,17 @@ namespace QuickCode.ViewModels
             using var sw = new StreamWriter(stream);
             sw.Write(qrCodeSvgProcessor.ToSvgString());
         }
-        private async Task SaveToPngFile(Stream stream, int size)
+        private void SaveToPngFile(Stream stream, int size)
         {
+            ArgumentNullException.ThrowIfNull(svgProcessor);
+
             using var memStream = new MemoryStream(svgProcessor.ToByteArray());
             var svgPath = svgProcessor.ToSvgString();
             var svg = this.svg ?? new SKSvg();
             if (this.svg == null) this.svg = svg;
             svg.Load(memStream);
+
+            ArgumentNullException.ThrowIfNull(svg.Picture);
 
             var info = new SKImageInfo(size, size);
             using var surface = SKSurface.Create(info);
@@ -198,6 +331,29 @@ namespace QuickCode.ViewModels
             using var image = surface.Snapshot();
             using var data = image.Encode(SKEncodedImageFormat.Png, 100);
             data.SaveTo(stream);
+        }
+        private void ApplyGradientDirection(LinearGradientBrush brush, LinearGradientDirection direction)
+        {
+            switch (direction)
+            {
+                case LinearGradientDirection.LeftToRight:
+                    brush.StartPoint = new Windows.Foundation.Point(0, 0.5);
+                    brush.EndPoint = new Windows.Foundation.Point(1, 0.5);
+                    break;
+                case LinearGradientDirection.TopToBottom:
+                    brush.StartPoint = new Windows.Foundation.Point(0.5, 0.0);
+                    brush.EndPoint = new Windows.Foundation.Point(0.5, 1.0);
+                    break;
+                case LinearGradientDirection.TopLeftToBottomRight:
+                    brush.StartPoint = new Windows.Foundation.Point(0, 0);
+                    brush.EndPoint = new Windows.Foundation.Point(1, 1);
+                    break;
+                case LinearGradientDirection.BottomLeftToTopRight:
+                    brush.StartPoint = new Windows.Foundation.Point(0, 1);
+                    brush.EndPoint = new Windows.Foundation.Point(1, 0);
+                    break;
+                default: throw new NotImplementedException();
+            }
         }
         private void NotifyCanExecuteChanged()
         {

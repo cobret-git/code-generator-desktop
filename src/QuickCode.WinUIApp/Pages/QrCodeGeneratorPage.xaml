@@ -224,6 +224,113 @@
                                            Opacity="0.8"/>
                             </Grid>
                         </Expander.Header>
+
+                        <StackPanel Orientation="Vertical">
+                            
+                            <!--background-->
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock x:Uid="BackgroundStyleSection_Header" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <RadioButton GroupName="BackgroundRadioButtonsGroup" 
+                                                 x:Uid="BackgroundStyleRadioButton_Transparent"
+                                                 IsChecked="{Binding IsBackgroundTransparent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <RadioButton GroupName="BackgroundRadioButtonsGroup"
+                                                 x:Uid="BackgroundStyleRadioButton_Solid"
+                                                 IsChecked="{Binding IsBackgroundSolid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <RadioButton GroupName="BackgroundRadioButtonsGroup"
+                                                 x:Uid="BackgroundStyleRadioButton_LinearGradient"
+                                                 IsChecked="{Binding IsBackgroundLinearGradient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,8,0,0" 
+                                            Visibility="{Binding IsBackgroundSolid, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock x:Uid="SolidColorSelectionField" Margin="0,0,0,8"/>
+                                    <Button Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left" Padding="5,4">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="{Binding BackgroundBrush, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Width="22" Height="22" CornerRadius="5"/>
+                                                <TextBlock Margin="8,0,0,0" Text="{Binding SolidBackgroundColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </StackPanel>
+                                        </Button.Content>
+                                        <Button.Flyout>
+                                            <Flyout>
+                                                <ColorPicker ColorSpectrumShape="Ring" 
+                                                             IsColorChannelTextInputVisible="True" 
+                                                             IsColorSliderVisible="True"
+                                                             IsMoreButtonVisible="False"
+                                                             IsHexInputVisible="True"
+                                                             IsAlphaEnabled="True"
+                                                             IsAlphaSliderVisible="True"
+                                                             IsAlphaTextInputVisible="True"
+                                                             Color="{Binding SolidBackgroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </Flyout>
+                                        </Button.Flyout>
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel Margin="0,8,0,0"
+                                            Visibility="{Binding IsBackgroundLinearGradient, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ComboBox x:Uid="LinearGradientDirection_Combobox" HorizontalAlignment="Stretch"
+                                              ItemsSource="{Binding GradientDirections, Mode=OneWay}"
+                                              SelectedItem="{Binding BackgroundGradientDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Converter={StaticResource EnumLocalizerConverter}}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <TextBlock x:Uid="LinearGradient_StartColor" Margin="0,8"/>
+                                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left" Padding="5,4">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="{Binding BackgroundGradientFirstStopBrush, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Width="22" Height="22" CornerRadius="5"/>
+                                                <TextBlock Margin="8,0,0,0" Text="{Binding BackgroundGradientFirstStopColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </StackPanel>
+                                        </Button.Content>
+                                        <Button.Flyout>
+                                            <Flyout>
+                                                <ColorPicker ColorSpectrumShape="Ring" 
+                                                             IsColorChannelTextInputVisible="True" 
+                                                             IsColorSliderVisible="True"
+                                                             IsMoreButtonVisible="False"
+                                                             IsHexInputVisible="True"
+                                                             IsAlphaEnabled="True"
+                                                             IsAlphaSliderVisible="True"
+                                                             IsAlphaTextInputVisible="True"
+                                                             Color="{Binding BackgroundGradientFirstStopColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </Flyout>
+                                        </Button.Flyout>
+                                    </Button>
+                                    <TextBlock x:Uid="LinearGradient_EndColor" Margin="0,8"/>
+                                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left" Padding="5,4">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="{Binding BackgroundGradientLastStopBrush, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Width="22" Height="22" CornerRadius="5"/>
+                                                <TextBlock Margin="8,0,0,0" Text="{Binding BackgroundGradientLastStopColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </StackPanel>
+                                        </Button.Content>
+                                        <Button.Flyout>
+                                            <Flyout>
+                                                <ColorPicker ColorSpectrumShape="Ring" 
+                                                             IsColorChannelTextInputVisible="True" 
+                                                             IsColorSliderVisible="True"
+                                                             IsMoreButtonVisible="False"
+                                                             IsHexInputVisible="True"
+                                                             IsAlphaEnabled="True"
+                                                             IsAlphaSliderVisible="True"
+                                                             IsAlphaTextInputVisible="True"
+                                                             Color="{Binding BackgroundGradientLastStopColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </Flyout>
+                                        </Button.Flyout>
+                                    </Button>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
                     </Expander>
 
                     <!--advanced selection-->

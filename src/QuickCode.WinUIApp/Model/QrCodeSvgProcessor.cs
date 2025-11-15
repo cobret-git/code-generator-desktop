@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Media;
+using Svg;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Windows.UI;
 
 namespace QuickCode.Model
 {
@@ -192,33 +193,11 @@ namespace QuickCode.Model
         #region Helpers
         private XElement CreateLinearGradientElement(LinearGradientBrush brush, string id)
         {
-            // Calculate gradient vector from Rectangle and LinearGradientMode
-            var rect = brush.Rectangle;
-            double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-
-            // Determine direction based on LinearGradientMode
-            switch (brush.LinearColors.Length)
-            {
-                case 2: // Simple two-color gradient
-                        // Try to determine angle from transform if available
-                    var transform = brush.Transform;
-                    if (transform != null && !transform.IsIdentity)
-                    {
-                        // Extract angle from transform matrix
-                        double angle = Math.Atan2(transform.Elements[1], transform.Elements[0]);
-                        double angleInDegrees = angle * 180 / Math.PI;
-
-                        // Convert angle to x1, y1, x2, y2
-                        (x1, y1, x2, y2) = AngleToCoordinates(angleInDegrees);
-                    }
-                    else
-                    {
-                        // Default horizontal gradient
-                        x1 = 0; y1 = 0;
-                        x2 = 1; y2 = 0;
-                    }
-                    break;
-            }
+            // Get start and end points from the brush
+            double x1 = brush.StartPoint.X;
+            double y1 = brush.StartPoint.Y;
+            double x2 = brush.EndPoint.X;
+            double y2 = brush.EndPoint.Y;
 
             var gradient = new XElement(_svgNs + "linearGradient",
                 new XAttribute("id", id),
@@ -228,49 +207,96 @@ namespace QuickCode.Model
                 new XAttribute("y2", $"{y2:F2}")
             );
 
-            // Handle color blend
-            if (brush.InterpolationColors != null)
+            // Add gradient stops from the GradientStops collection
+            if (brush.GradientStops != null)
             {
-                var blend = brush.InterpolationColors;
-                for (int i = 0; i < blend.Colors.Length; i++)
+                foreach (var stop in brush.GradientStops)
                 {
-                    var color = blend.Colors[i];
-                    var position = blend.Positions[i];
-
-                    gradient.Add(CreateStopElement(color, position));
+                    gradient.Add(CreateStopElement(stop));
                 }
+            }
+
+            // Add relative/absolute mapping mode
+            if (brush.MappingMode == BrushMappingMode.Absolute)
+            {
+                gradient.Add(new XAttribute("gradientUnits", "userSpaceOnUse"));
             }
             else
             {
-                // Use LinearColors (simple two-color gradient)
-                var colors = brush.LinearColors;
-                if (colors.Length >= 2)
+                gradient.Add(new XAttribute("gradientUnits", "objectBoundingBox"));
+            }
+
+            // Add transform if present
+            if (brush.Transform != null)
+            {
+                var transform = brush.Transform;
+                if (transform is MatrixTransform matrixTransform)
                 {
-                    gradient.Add(CreateStopElement(colors[0], 0));
-                    gradient.Add(CreateStopElement(colors[1], 1));
+                    var matrix = matrixTransform.Matrix;
+                    string transformValue = $"matrix({matrix.M11:F6},{matrix.M12:F6},{matrix.M21:F6},{matrix.M22:F6},{matrix.OffsetX:F6},{matrix.OffsetY:F6})";
+                    gradient.Add(new XAttribute("gradientTransform", transformValue));
+                }
+                else if (transform is RotateTransform rotateTransform)
+                {
+                    string transformValue = $"rotate({rotateTransform.Angle:F2} {rotateTransform.CenterX:F2} {rotateTransform.CenterY:F2})";
+                    gradient.Add(new XAttribute("gradientTransform", transformValue));
+                }
+                else if (transform is ScaleTransform scaleTransform)
+                {
+                    string transformValue = $"scale({scaleTransform.ScaleX:F6},{scaleTransform.ScaleY:F6})";
+                    gradient.Add(new XAttribute("gradientTransform", transformValue));
+                }
+                else if (transform is SkewTransform skewTransform)
+                {
+                    string transformValue = $"skewX({skewTransform.AngleX:F2}) skewY({skewTransform.AngleY:F2})";
+                    gradient.Add(new XAttribute("gradientTransform", transformValue));
+                }
+                else if (transform is TranslateTransform translateTransform)
+                {
+                    string transformValue = $"translate({translateTransform.X:F6},{translateTransform.Y:F6})";
+                    gradient.Add(new XAttribute("gradientTransform", transformValue));
+                }
+                else if (transform is TransformGroup transformGroup)
+                {
+                    var transforms = new List<string>();
+                    foreach (var t in transformGroup.Children)
+                    {
+                        if (t is MatrixTransform mt)
+                        {
+                            var m = mt.Matrix;
+                            transforms.Add($"matrix({m.M11:F6},{m.M12:F6},{m.M21:F6},{m.M22:F6},{m.OffsetX:F6},{m.OffsetY:F6})");
+                        }
+                        else if (t is RotateTransform rt)
+                            transforms.Add($"rotate({rt.Angle:F2} {rt.CenterX:F2} {rt.CenterY:F2})");
+                        else if (t is ScaleTransform st)
+                            transforms.Add($"scale({st.ScaleX:F6},{st.ScaleY:F6})");
+                        else if (t is SkewTransform skt)
+                            transforms.Add($"skewX({skt.AngleX:F2}) skewY({skt.AngleY:F2})");
+                        else if (t is TranslateTransform tt)
+                            transforms.Add($"translate({tt.X:F6},{tt.Y:F6})");
+                    }
+                    if (transforms.Count > 0)
+                    {
+                        gradient.Add(new XAttribute("gradientTransform", string.Join(" ", transforms)));
+                    }
                 }
             }
 
-            // Add gradient transform if present
-            if (brush.Transform != null && !brush.Transform.IsIdentity)
+            // Add spread method
+            string spreadMethod = brush.SpreadMethod switch
             {
-                var matrix = brush.Transform;
-                var elements = matrix.Elements;
-                string transformValue = $"matrix({elements[0]:F6},{elements[1]:F6},{elements[2]:F6},{elements[3]:F6},{elements[4]:F6},{elements[5]:F6})";
-                gradient.Add(new XAttribute("gradientTransform", transformValue));
-            }
-
-            // Add wrap mode (spreadMethod)
-            string spreadMethod = brush.WrapMode switch
-            {
-                WrapMode.Tile => "repeat",
-                WrapMode.TileFlipX => "repeat",
-                WrapMode.TileFlipY => "repeat",
-                WrapMode.TileFlipXY => "repeat",
-                WrapMode.Clamp => "pad",
+                GradientSpreadMethod.Pad => "pad",
+                GradientSpreadMethod.Reflect => "reflect",
+                GradientSpreadMethod.Repeat => "repeat",
                 _ => "pad"
             };
             gradient.Add(new XAttribute("spreadMethod", spreadMethod));
+
+            // Add color interpolation mode
+            if (brush.ColorInterpolationMode == ColorInterpolationMode.ScRgbLinearInterpolation)
+            {
+                gradient.Add(new XAttribute("color-interpolation", "linearRGB"));
+            }
 
             return gradient;
         }
@@ -290,6 +316,24 @@ namespace QuickCode.Model
             }
 
             return stop;
+        }
+        private XElement CreateStopElement(GradientStop stop)
+        {
+            var color = stop.Color;
+            string colorHex = $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+            double opacity = color.A / 255.0;
+
+            var stopElement = new XElement(_svgNs + "stop",
+                new XAttribute("offset", $"{stop.Offset * 100:F2}%"),
+                new XAttribute("stop-color", colorHex)
+            );
+
+            if (opacity < 1.0)
+            {
+                stopElement.Add(new XAttribute("stop-opacity", $"{opacity:F3}"));
+            }
+
+            return stopElement;
         }
         private (double x1, double y1, double x2, double y2) AngleToCoordinates(double angleDegrees)
         {
